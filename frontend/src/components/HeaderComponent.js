@@ -16,7 +16,7 @@ import {
   Input,
   Label,
 } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 class Header extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ class Header extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar dark expand="md">
+        <Navbar dark expand="lg">
           <div className="container">
             <NavbarToggler onClick={this.toggleNav} />
             <NavbarBrand className="mr-auto" href="/">
@@ -74,39 +74,43 @@ class Header extends Component {
               <Nav navbar>
                 <NavItem>
                   <NavLink className="nav-link" to="/home">
-                    <span className="fa fa-home fa-lg"></span> Home
+                    <span className="fa fa-home fa-lg"></span> Inicio
                   </NavLink>
                 </NavItem>
 
                 <NavItem>
                   <NavLink className="nav-link" to="/menu">
-                    <span className="fa fa-list fa-lg"></span> Menu
+                    <span className="fa fa-list fa-lg"></span> Menú
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   {this.props.auth.isAuthenticated ? (
                     <NavLink className="nav-link" to="/favorites">
-                      <span className="fa fa-heart fa-lg"></span> My Favorites
+                      <span className="fa fa-heart fa-lg"></span> Favoritos
                     </NavLink>
                   ) : null}
                 </NavItem>
                 <NavItem>
                   <NavLink className="nav-link" to="/aboutus">
-                    <span className="fa fa-info fa-lg"></span> About Us
+                    <span className="fa fa-info fa-lg"></span> Quienes somos
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink className="nav-link" to="/contactus">
-                    <span className="fa fa-address-card fa-lg"></span> Contact
-                    Us
+                    <span className="fa fa-address-card fa-lg"></span> Contacto
                   </NavLink>
                 </NavItem>
               </Nav>
               <Nav className="ml-auto" navbar>
                 <NavItem>
                   {!this.props.auth.isAuthenticated ? (
-                    <Button outline onClick={this.toggleModal}>
-                      <span className="fa fa-sign-in fa-lg"></span> Login
+                    <Button
+                      className="login"
+                      color="success"
+                      onClick={this.toggleModal}
+                    >
+                      <span className="fa fa-sign-in fa-lg"></span> Iniciar
+                      Sesión
                       {this.props.auth.isFetching ? (
                         <span className="fa fa-spinner fa-pulse fa-fw"></span>
                       ) : null}
@@ -116,8 +120,14 @@ class Header extends Component {
                       <div className="navbar-text mr-3">
                         {this.props.auth.user.username}
                       </div>
-                      <Button outline onClick={this.handleLogout}>
-                        <span className="fa fa-sign-out fa-lg"></span> Logout
+                      <Button
+                        className="logout"
+                        outline
+                        color="danger"
+                        onClick={this.handleLogout}
+                      >
+                        <span className="fa fa-sign-out fa-lg"></span> Cerrar
+                        Sesión
                         {this.props.auth.isFetching ? (
                           <span className="fa fa-spinner fa-pulse fa-fw"></span>
                         ) : null}
@@ -133,22 +143,24 @@ class Header extends Component {
           <div className="container">
             <div className="row row-header">
               <div className="col-12 col-sm-6">
-                <h1>Ristorante Con Fusion</h1>
+                <h1>Restaurante</h1>
                 <p>
-                  We take inspiration from the World's best cuisines, and create
-                  a unique fusion experience. Our lipsmacking creations will
-                  tickle your culinary senses!
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book.
                 </p>
               </div>
             </div>
           </div>
         </Jumbotron>
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-          <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+          <ModalHeader toggle={this.toggleModal}>Iniciar Sesión</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.handleLogin}>
               <FormGroup>
-                <Label htmlFor="username">Username</Label>
+                <Label htmlFor="username">Usuario</Label>
                 <Input
                   type="text"
                   id="username"
@@ -157,7 +169,7 @@ class Header extends Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Contraseña</Label>
                 <Input
                   type="password"
                   id="password"
@@ -172,12 +184,19 @@ class Header extends Component {
                     name="remember"
                     innerRef={(input) => (this.remember = input)}
                   />
-                  Remember me
+                  Recordar
                 </Label>
               </FormGroup>
-              <Button type="submit" value="submit" color="primary">
-                Login
-              </Button>
+
+              <button className="primary" type="submit" value="submit">
+                Iniciar Sesión
+              </button>
+              <div>
+                No tenes cuenta?{" "}
+                <Link to="/register" onClick={this.toggleModal}>
+                  Registrarme
+                </Link>
+              </div>
             </Form>
           </ModalBody>
         </Modal>

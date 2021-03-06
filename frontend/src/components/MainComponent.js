@@ -24,6 +24,7 @@ import {
 } from "../redux/ActionCreators";
 import { actions } from "react-redux-form";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import RegisterComponent from "./RegisterComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -196,6 +197,11 @@ class Main extends Component {
                     postFeedback={this.props.postFeedback}
                   />
                 )}
+              />
+              <Route
+                exact
+                path="/register"
+                component={() => <RegisterComponent />}
               />
               <Redirect to="/home" />
             </Switch>
