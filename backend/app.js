@@ -8,6 +8,9 @@ var FileStore = require("session-file-store")(session);
 var passport = require("passport");
 var config = require("./config");
 const cors = require("cors");
+var app = express();
+
+app.use(cors());
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -34,8 +37,6 @@ connect.then(
   }
 );
 
-var app = express();
-
 // Secure traffic only
 app.all("*", (req, res, next) => {
   if (req.secure) {
@@ -59,7 +60,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(passport.initialize());
 
-app.use(cors());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 

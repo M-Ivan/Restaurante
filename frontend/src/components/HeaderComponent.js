@@ -17,6 +17,7 @@ import {
   Label,
 } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
+import LoadingBox from "./LoadingBox";
 
 class Header extends Component {
   constructor(props) {
@@ -117,9 +118,13 @@ class Header extends Component {
                     </Button>
                   ) : (
                     <div>
-                      <div className="navbar-text mr-3">
-                        {this.props.auth.user.username}
-                      </div>
+                      {this.props.auth.user !== null || undefined ? (
+                        <div className="navbar-text mr-3">
+                          {this.props.auth.user.username}
+                        </div>
+                      ) : this.props.auth.isLoading ? (
+                        <LoadingBox />
+                      ) : null}
                       <Button
                         className="logout"
                         outline
@@ -143,7 +148,7 @@ class Header extends Component {
           <div className="container">
             <div className="row row-header">
               <div className="col-12 col-sm-6">
-                <h1>Restaurante</h1>
+                <h1>Reactstaurante</h1>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
@@ -187,16 +192,22 @@ class Header extends Component {
                   Recordar
                 </Label>
               </FormGroup>
-
-              <button className="primary" type="submit" value="submit">
+              <br />
+              <Button
+                block
+                className="primary"
+                color="info"
+                type="submit"
+                value="submit"
+              >
                 Iniciar Sesión
-              </button>
-              <div>
+              </Button>
+              <Label>
                 No tenes cuenta?{" "}
                 <Link to="/register" onClick={this.toggleModal}>
                   Registrarme
                 </Link>
-              </div>
+              </Label>
             </Form>
           </ModalBody>
         </Modal>

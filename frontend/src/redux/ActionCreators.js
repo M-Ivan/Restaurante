@@ -261,6 +261,51 @@ export const loginError = (message) => {
   };
 };
 
+export const requestRegister = (creds) => {
+  return {
+    type: ActionTypes.REGISTER_REQUEST,
+    creds,
+  };
+};
+
+export const receiveRegister = (response) => {
+  return {
+    type: ActionTypes.REGISTER_SUCCESS,
+    token: response.token,
+  };
+};
+export const registerError = (message) => {
+  return {
+    type: ActionTypes.REGISTER_FAILURE,
+    message,
+  };
+};
+
+// export const register = (firstname, lastname, username, password) => async (
+//  dispatch) => {
+//  dispatch({
+//   type: ActionTypes.REGISTER_REQUEST,
+//   payload: { username, password },
+//  });
+//  try {
+//    const { data } = await Axios.post(baseUrl + "/users/signup", {
+//     creds
+//    });
+//   console.log("data", data);
+//    dispatch({ type: ActionTypes.REGISTER_SUCCESS, payload: data });
+//    dispatch({ type: ActionTypes.LOGIN_SUCCESS, payload: data });
+//    localStorage.setItem("userInfo", JSON.stringify(data));
+//  } catch (error) {
+//    dispatch({
+//      type: ActionTypes.REGISTER_FAILURE,
+//      payload:
+//       error.response && error.response.data.message
+//         ? error.response.data.message
+//         : error.message,
+//   });
+//  }
+//};
+
 export const loginUser = (creds) => (dispatch) => {
   // We dispatch requestLogin to kickoff the call to the API
   dispatch(requestLogin(creds));
@@ -308,6 +353,56 @@ export const loginUser = (creds) => (dispatch) => {
       }
     })
     .catch((error) => dispatch(loginError(error.message)));
+};
+
+export const registerUser = (creds) => (dispatch) => {
+  // We dispatch requestLogin to kickoff the call to the API
+  dispatch(requestRegister(creds));
+
+  return fetch(
+    baseUrl + "users/signup",
+
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(creds),
+    }
+  )
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        throw error;
+      }
+    )
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.success) {
+        // If login was successful, set the token in local storage
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("creds", JSON.stringify(creds));
+        // Dispatch the success action
+        dispatch(fetchFavorites());
+        dispatch(receiveRegister(response));
+        dispatch(receiveLogin(response));
+      } else {
+        var error = new Error("Error " + response.status);
+        error.response = response;
+        throw error;
+      }
+    })
+    .catch((error) => dispatch(registerError(error.message)));
 };
 
 export const requestLogout = () => {

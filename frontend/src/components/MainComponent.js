@@ -201,6 +201,7 @@ class Main extends Component {
               <Route
                 exact
                 path="/register"
+                history={this.props.history}
                 component={() => <RegisterComponent />}
               />
               <Redirect to="/home" />
