@@ -9,8 +9,17 @@ export default function AdminRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={(props) =>
-        admin ? <Component {...props}></Component> : <Redirect to="/signin" />
+        admin ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/home",
+              state: { from: props.location },
+            }}
+          />
+        )
       }
-    ></Route>
+    />
   );
 }

@@ -1,3 +1,4 @@
+// Imports
 import React from "react";
 import {
   Breadcrumb,
@@ -12,6 +13,7 @@ import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
 import { Fade, Stagger } from "react-animation-components";
 
+//Display leader
 function RenderLeader({ leader }) {
   return (
     <Media tag="li">
@@ -43,6 +45,7 @@ function LeaderList(props) {
     );
   });
 
+  //Handle Loading
   if (props.leaders.isLoading) {
     return <Loading />;
   } else if (props.leaders.errMess) {
@@ -60,7 +63,8 @@ function LeaderList(props) {
   }
 }
 
-function About(props) {
+// Rfc de AboutUs
+export default function About(props) {
   return (
     <div className="container">
       <div className="row">
@@ -135,5 +139,3 @@ function About(props) {
     </div>
   );
 }
-
-export default About;

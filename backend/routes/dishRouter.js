@@ -31,7 +31,6 @@ dishRouter
       .catch((err) => next(err));
   })
 
-  //added the verifyAdmin method
   .post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Dishes.create(req.body)
       .then(
@@ -46,13 +45,11 @@ dishRouter
       .catch((err) => next(err));
   })
 
-  //added the verifyAdmin method
   .put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     res.statusCode = 403;
     res.end("PUT operation not supported on /dishes");
   })
 
-  //added the verifyAdmin method
   .delete(
     authenticate.verifyUser,
     authenticate.verifyAdmin,
@@ -91,7 +88,6 @@ dishRouter
       .catch((err) => next(err));
   })
 
-  //added the verifyAdmin method
   .post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     res.statusCode = 403;
     res.end(
@@ -99,7 +95,6 @@ dishRouter
     );
   })
 
-  //added the verifyAdmin method
   .put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Dishes.findByIdAndUpdate(
       req.params.dishId,
@@ -119,7 +114,6 @@ dishRouter
       .catch((err) => next(err));
   })
 
-  //added the verifyAdmin method
   // .delete(
   //   authenticate.verifyUser,
   //   authenticate.verifyAdmin,

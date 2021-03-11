@@ -3,15 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { Button, Media } from "reactstrap";
+import { createDish, deleteDish } from "../actions/dishActions";
 
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 
-import { createDish, deleteDish } from "../redux/ActionCreators";
-import { CREATE_DISH_RESET, DELETE_DISH_RESET } from "../redux/ActionTypes";
+import {
+  CREATE_DISH_RESET,
+  DELETE_DISH_RESET,
+} from "../constants/dishConstants";
 import { baseUrl } from "../shared/baseUrl";
 
-export default withRouter(function ProductListScreen(props) {
+export default withRouter(function DishListScreen(props) {
   const dishes = useSelector((state) => state.dishes);
   const { isLoading, errMess } = dishes;
 
@@ -109,7 +112,14 @@ export default withRouter(function ProductListScreen(props) {
                       alt={dish.name}
                     />
                   </Link>
-                  <td>{dish.name}</td>
+                  <td>
+                    {dish.featured ? (
+                      <i className="featured fa fa-star"></i>
+                    ) : (
+                      <i className="featured fa fa-star-o"></i>
+                    )}{" "}
+                    {dish.name}
+                  </td>
                   <td>{dish.label}</td>
                   <td>${dish.price}</td>
                   <td>{dish.category}</td>

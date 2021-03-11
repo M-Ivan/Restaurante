@@ -4,7 +4,7 @@ import {
   FAVORITES_LOADING,
 } from "../constants/favoritesConstants";
 
-export const favorites = (
+export const favoritesReducer = (
   state = {
     isLoading: true,
     errMess: null,

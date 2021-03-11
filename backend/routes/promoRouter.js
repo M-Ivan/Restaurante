@@ -1,17 +1,15 @@
-//IMPORTING MODULES
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const authenticate = require("../authenticate");
 const cors = require("./cors");
-//IMPORTING VAR
+
 const Promotions = require("../models/promotions");
 
 const promoRouter = express.Router();
 
 promoRouter.use(bodyParser.json());
 
-//GET,POST,PUT,DELETE OPERATIONS ON /promotions
 promoRouter
   .route("/")
   .options(cors.corsWithOptions, (req, res) => {
@@ -78,7 +76,6 @@ promoRouter
     }
   );
 
-//GET,POST,PUT,DELETE OPERATIONS ON /promotions/:promotionId
 promoRouter
   .route("/:promotionId")
   .options(cors.corsWithOptions, (req, res) => {
@@ -153,5 +150,4 @@ promoRouter
     }
   );
 
-//EXPORTING THE MODULE
 module.exports = promoRouter;

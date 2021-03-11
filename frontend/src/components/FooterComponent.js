@@ -1,7 +1,9 @@
+//import
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Footer(props) {
+//Export del Footer
+export default function Footer(props) {
   return (
     <div className="footer">
       <div className="container">
@@ -91,5 +93,3 @@ function Footer(props) {
     </div>
   );
 }
-
-export default Footer;

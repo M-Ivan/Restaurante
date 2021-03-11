@@ -1,6 +1,22 @@
-import * as ActionTypes from "./ActionTypes";
+import {
+  ADD_DISHES,
+  CREATE_DISH_FAILED,
+  CREATE_DISH_REQUEST,
+  CREATE_DISH_RESET,
+  CREATE_DISH_SUCCESS,
+  DELETE_DISH_FAILED,
+  DELETE_DISH_REQUEST,
+  DELETE_DISH_RESET,
+  DELETE_DISH_SUCCESS,
+  DISHES_FAILED,
+  DISHES_LOADING,
+  UPDATE_DISH_FAILED,
+  UPDATE_DISH_REQUEST,
+  UPDATE_DISH_RESET,
+  UPDATE_DISH_SUCCESS,
+} from "../constants/dishConstants";
 
-export const Dishes = (
+export const dishesReducer = (
   state = {
     isLoading: true,
     errMess: null,
@@ -9,16 +25,16 @@ export const Dishes = (
   action
 ) => {
   switch (action.type) {
-    case ActionTypes.ADD_DISHES:
+    case ADD_DISHES:
       return {
         ...state,
         isLoading: false,
         errMess: null,
         dishes: action.payload,
       };
-    case ActionTypes.DISHES_LOADING:
+    case DISHES_LOADING:
       return { ...state, isLoading: true, errMess: null, dishes: [] };
-    case ActionTypes.DISHES_FAILED:
+    case DISHES_FAILED:
       return {
         ...state,
         isLoading: false,
@@ -32,13 +48,13 @@ export const Dishes = (
 
 export const dishCreateReducer = (state = {}, action) => {
   switch (action.type) {
-    case ActionTypes.CREATE_DISH_REQUEST:
+    case CREATE_DISH_REQUEST:
       return { loading: true };
-    case ActionTypes.CREATE_DISH_SUCCESS:
+    case CREATE_DISH_SUCCESS:
       return { loading: false, success: true, dish: action.payload };
-    case ActionTypes.CREATE_DISH_FAILED:
+    case CREATE_DISH_FAILED:
       return { loading: false, error: action.payload };
-    case ActionTypes.CREATE_DISH_RESET:
+    case CREATE_DISH_RESET:
       return {};
     default:
       return state;
@@ -47,13 +63,13 @@ export const dishCreateReducer = (state = {}, action) => {
 
 export const dishDeleteReducer = (state = {}, action) => {
   switch (action.type) {
-    case ActionTypes.DELETE_DISH_REQUEST:
+    case DELETE_DISH_REQUEST:
       return { loading: true };
-    case ActionTypes.DELETE_DISH_SUCCESS:
+    case DELETE_DISH_SUCCESS:
       return { loading: false, success: true };
-    case ActionTypes.DELETE_DISH_FAILED:
+    case DELETE_DISH_FAILED:
       return { loading: false, error: action.payload };
-    case ActionTypes.DELETE_DISH_RESET:
+    case DELETE_DISH_RESET:
       return {};
     default:
       return state;
@@ -62,13 +78,13 @@ export const dishDeleteReducer = (state = {}, action) => {
 
 export const dishUpdateReducer = (state = {}, action) => {
   switch (action.type) {
-    case ActionTypes.UPDATE_DISH_REQUEST:
+    case UPDATE_DISH_REQUEST:
       return { loading: true };
-    case ActionTypes.UPDATE_DISH_SUCCESS:
+    case UPDATE_DISH_SUCCESS:
       return { loading: false, success: true };
-    case ActionTypes.UPDATE_DISH_SUCCESS:
+    case UPDATE_DISH_FAILED:
       return { loading: false, error: action.payload };
-    case ActionTypes.UPDATE_DISH_RESET:
+    case UPDATE_DISH_RESET:
       return {};
     default:
       return state;

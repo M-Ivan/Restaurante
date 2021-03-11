@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Module dependencies.
+ * Dependencias
  */
 
 var app = require("../app");
@@ -10,7 +10,7 @@ var http = require("http");
 var https = require("https");
 var fs = require("fs");
 /**
- * Get port from environment and store in Express.
+ * Obtiene el puerto
  */
 
 var port = normalizePort(process.env.PORT || "5000");
@@ -23,14 +23,14 @@ app.set("secPort", port + 443);
 var server = http.createServer(app);
 
 /**
- * Listen on provided port, on all network interfaces.
+ * Server listens en port
  */
 
 server.listen(port);
 server.on("error", onError);
 server.on("listening", onListening);
 
-//Create HTTPS Server
+//HTTPS server
 
 var options = {
   key: fs.readFileSync(__dirname + "/private.key"),
@@ -40,7 +40,7 @@ var options = {
 var secureServer = https.createServer(options, app);
 
 /**
- * Listen on provided port, on all network interfaces.
+ * Server listens en port
  */
 
 secureServer.listen(app.get("secPort"), () => {
@@ -70,7 +70,7 @@ function normalizePort(val) {
 }
 
 /**
- * Event listener for HTTP server "error" event.
+Escucha los errores
  */
 
 function onError(error) {
@@ -96,7 +96,7 @@ function onError(error) {
 }
 
 /**
- * Event listener for HTTP server "listening" event.
+ * Escucha el evento listening
  */
 
 function onListening() {

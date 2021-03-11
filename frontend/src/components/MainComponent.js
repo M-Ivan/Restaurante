@@ -1,3 +1,4 @@
+//Import
 import React, { Component } from "react";
 import Home from "./HomeComponent";
 import About from "./AboutComponent";
@@ -9,25 +10,23 @@ import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  postComment,
-  postFeedback,
-  fetchDishes,
-  fetchComments,
-  fetchPromos,
-  fetchLeaders,
-  loginUser,
-  logoutUser,
-  fetchFavorites,
-  postFavorite,
-  deleteFavorite,
-} from "../redux/ActionCreators";
 import { actions } from "react-redux-form";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import RegisterComponent from "./RegisterComponent";
 import DishListComponent from "./DishListComponent";
 import DishEditComponent from "./DishEditComponent";
-
+import AdminRoute from "./AdminRoute";
+import { fetchDishes } from "../actions/dishActions";
+import { fetchComments, postComment } from "../actions/commentsActions";
+import { fetchPromos } from "../actions/promoActions";
+import { fetchLeaders, postFeedback } from "../actions/leadersActions";
+import { loginUser, logoutUser } from "../actions/userActions";
+import {
+  deleteFavorite,
+  fetchFavorites,
+  postFavorite,
+} from "../actions/favoritesActions";
+//Linkeando el state del componente a la store de redux
 const mapStateToProps = (state) => {
   return {
     dishes: state.dishes,
@@ -39,6 +38,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+//Acciones en el store de reudux
 const mapDispatchToProps = (dispatch) => ({
   postComment: (dishId, rating, comment) =>
     dispatch(postComment(dishId, rating, comment)),
@@ -63,6 +63,7 @@ const mapDispatchToProps = (dispatch) => ({
   deleteFavorite: (dishId) => dispatch(deleteFavorite(dishId)),
 });
 
+//Componente principal, equivalente a app.js muchas veces
 class Main extends Component {
   componentDidMount() {
     this.props.fetchDishes();
@@ -136,6 +137,7 @@ class Main extends Component {
       );
     };
 
+    //Ruta privada para favoritos
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route
         {...rest}
@@ -153,25 +155,6 @@ class Main extends Component {
         }
       />
     );
-
-    const AdminRoute = ({ component: Component, ...rest }) => (
-      <Route
-        {...rest}
-        render={(props) =>
-          this.props.auth.admin ? (
-            <Component {...props} />
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/home",
-                state: { from: props.location },
-              }}
-            />
-          )
-        }
-      />
-    );
-
     return (
       <div>
         <Header

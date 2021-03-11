@@ -33,6 +33,19 @@ a {
   font-weight: bold;
 }
 
+.link {
+  color: #000000;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #000000;
+  text-decoration: none;
+}
+.featured {
+  color: #ffa600;
+}
+
 /* Footer */
 .footer {
   background-color: #ffe8cb;
@@ -113,6 +126,7 @@ address {
   color: #442b1f;
   text-decoration: none;
 }
+
 .media a:hover {
   text-shadow: 2px 2px 2px #ffe8a8;
 }

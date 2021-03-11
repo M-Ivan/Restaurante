@@ -1,9 +1,12 @@
+//imports
 import React from "react";
 import { Card, CardImg, CardText, CardTitle, CardHeader } from "reactstrap";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
 import { FadeTransform } from "react-animation-components";
+import { Link } from "react-router-dom";
 
+//Card basica de la HomeScreen
 function RenderCard({ item, isLoading, errMess }) {
   if (item) {
     if (isLoading) {
@@ -34,16 +37,20 @@ function RenderCard({ item, isLoading, errMess }) {
   }
 }
 
-function Home(props) {
+export default function Home(props) {
   return (
     <div className="container">
       <div className="row align-items-start">
         <div className="col-12 col-md m-1">
-          <RenderCard
-            item={props.dish}
-            isLoading={props.dishesLoading}
-            errMess={props.dishesErrMess}
-          />
+          {props.dish ? (
+            <Link className="link" to={`/menu/${props.dish._id}`}>
+              <RenderCard
+                item={props.dish}
+                isLoading={props.dishesLoading}
+                errMess={props.dishesErrMess}
+              />
+            </Link>
+          ) : null}
         </div>
         <div className="col-12 col-md m-1">
           <RenderCard
@@ -53,15 +60,15 @@ function Home(props) {
           />
         </div>
         <div className="col-12 col-md m-1">
-          <RenderCard
-            item={props.leader}
-            isLoading={props.leaderLoading}
-            errMess={props.leaderErrMess}
-          />
+          <Link to="/aboutus" className="link">
+            <RenderCard
+              item={props.leader}
+              isLoading={props.leaderLoading}
+              errMess={props.leaderErrMess}
+            />
+          </Link>
         </div>
       </div>
     </div>
   );
 }
-
-export default Home;

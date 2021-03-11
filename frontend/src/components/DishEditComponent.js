@@ -1,16 +1,14 @@
+// Import
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Axios from "axios";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { withRouter } from "react-router";
-import { updateDish } from "../redux/ActionCreators";
-import { UPDATE_DISH_RESET } from "../redux/ActionTypes";
 import { baseUrl } from "../shared/baseUrl";
 import placeholder from "../shared/uploadImage.png";
 import {
   Button,
-  Col,
   Input,
   Label,
   Form,
@@ -21,8 +19,11 @@ import {
   CardSubtitle,
   CardText,
 } from "reactstrap";
+import { updateDish } from "../actions/dishActions";
+import { UPDATE_DISH_RESET } from "../constants/dishConstants";
 
-export default withRouter(function ProductEditScreen(props) {
+// Rfc de la screen completa.
+export default withRouter(function DishEditScreen(props) {
   const dishId = props.match.params.dishId;
   const [name, setName] = useState("");
   const [label, setLabel] = useState("");
@@ -70,9 +71,9 @@ export default withRouter(function ProductEditScreen(props) {
     }
   }, [dish, dispatch, dishId, successUpdate, props.history]);
 
+  // Manda el post al servidor cuando se confirman los valores
   const submitHandler = (e) => {
     e.preventDefault();
-    // TODO: dispatch update product
     dispatch(
       updateDish({
         _id: dishId,
@@ -117,6 +118,7 @@ export default withRouter(function ProductEditScreen(props) {
     }
   };
 
+  // Render / return
   return (
     <div>
       <div className="row row-content">

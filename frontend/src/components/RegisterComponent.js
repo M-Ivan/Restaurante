@@ -1,6 +1,6 @@
+//Imports
 import React, { useEffect, useState } from "react";
 import { withRouter, Link } from "react-router-dom";
-import { registerUser } from "../redux/ActionCreators";
 import LoadingBox from "./LoadingBox";
 import MessageBox from "./MessageBox";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,9 @@ import {
   Label,
   Row,
 } from "reactstrap";
+import { registerUser } from "../actions/userActions";
 
+// Componente de Registro.
 export default withRouter(function RegisterComponent(props) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");

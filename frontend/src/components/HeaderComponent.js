@@ -1,3 +1,4 @@
+// imports
 import React, { Component } from "react";
 import {
   Navbar,
@@ -19,6 +20,7 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import LoadingBox from "./LoadingBox";
 
+// Rcc del Header.
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +46,7 @@ class Header extends Component {
     });
   }
 
+  //Maneja el evento login
   handleLogin(event) {
     this.toggleModal();
     this.props.loginUser({

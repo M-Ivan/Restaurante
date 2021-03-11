@@ -1,3 +1,4 @@
+//imports
 import React, { useState } from "react";
 import {
   Card,
@@ -13,6 +14,7 @@ import { Link } from "react-router-dom";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
 
+//Carta
 function RenderMenuItem(dish) {
   const [fullDisplay, setFullDisplay] = useState(false);
   return (
@@ -48,6 +50,7 @@ function RenderMenuItem(dish) {
   );
 }
 
+//La pantalla del menu
 export default function Menu(props) {
   const menu = props.dishes.dishes.map((dish) => {
     return (

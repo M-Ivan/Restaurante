@@ -18,9 +18,7 @@ favoriteRouter
     res.sendStatus(200);
   })
 
-  //GET
   .get(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
-    //Method for filtering by user
     Favorites.findOne({ user: req.user._id })
       .populate("user")
       .populate("dishes")
@@ -35,7 +33,6 @@ favoriteRouter
       .catch((err) => next(err));
   })
 
-  //POST
   .post(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
     Favorites.findOne({ user: req.user._id })
       .then(
@@ -72,13 +69,11 @@ favoriteRouter
       .catch((err) => next(err));
   })
 
-  //PUT
   .put(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
     res.statusCode = 403;
     res.end("PUT operation not supported on /favorites");
   })
 
-  //DELETE ALL
   .delete(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
     Favorites.findOneAndRemove({ user: req.user._id })
       .then(
@@ -92,20 +87,17 @@ favoriteRouter
       .catch((err) => next(err));
   });
 
-//DISHID
 favoriteRouter
   .route("/:dishId")
   .options(cors.corsWithOptions, (req, res) => {
     res.sendStatus(200);
   })
 
-  //GET
   .get(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
     res.statusCode = 403;
     res.end("GET operation not supported on /favorites/:DishId");
   })
 
-  //POST
   .post(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
     Favorites.findOne({ user: req.user._id })
       .then(
@@ -143,13 +135,11 @@ favoriteRouter
       .catch((err) => next(err));
   })
 
-  //PUT
   .put(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
     res.statusCode = 403;
     res.end("PUT operation not supported on /favorites/:DishId");
   })
 
-  //DELETE A FAV
   .delete(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
     Favorites.findOne({ user: req.user._id })
       .then(

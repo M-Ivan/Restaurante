@@ -1,9 +1,20 @@
-import * as ActionTypes from "./ActionTypes";
+// Reducer de usuarios. Los state iniciales se
+// fijan segun el localStorage. En la misma app
+// En una app real tambien chequeariamos si el token
+// expiró.
 
-// The auth reducer. The starting state sets authentication
-// based on a token being in local storage. In a real app,
-// we would also want a util to check if the token is expired.
-export const Auth = (
+import {
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  REGISTER_FAILURE,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+} from "../constants/userConstants";
+
+export const authReducer = (
   state = {
     isLoading: false,
     isAuthenticated: localStorage.getItem("token") ? true : false,
@@ -17,35 +28,35 @@ export const Auth = (
   action
 ) => {
   switch (action.type) {
-    case ActionTypes.REGISTER_REQUEST:
+    case REGISTER_REQUEST:
       return {
         ...state,
         isLoading: true,
         isAuthenticated: false,
         user: action.creds,
       };
-    case ActionTypes.REGISTER_SUCCESS:
+    case REGISTER_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isAuthenticated: true,
         token: action.token,
       };
-    case ActionTypes.REGISTER_FAILURE:
+    case REGISTER_FAILURE:
       return {
         ...state,
         isLoading: false,
         isAuthenticated: false,
         errMess: action.message,
       };
-    case ActionTypes.LOGIN_REQUEST:
+    case LOGIN_REQUEST:
       return {
         ...state,
         isLoading: true,
         isAuthenticated: false,
         user: action.creds,
       };
-    case ActionTypes.LOGIN_SUCCESS:
+    case LOGIN_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -54,16 +65,16 @@ export const Auth = (
         token: action.token,
         admin: action.admin,
       };
-    case ActionTypes.LOGIN_FAILURE:
+    case LOGIN_FAILURE:
       return {
         ...state,
         isLoading: false,
         isAuthenticated: false,
         errMess: action.message,
       };
-    case ActionTypes.LOGOUT_REQUEST:
+    case LOGOUT_REQUEST:
       return { ...state, isLoading: true, isAuthenticated: true };
-    case ActionTypes.LOGOUT_SUCCESS:
+    case LOGOUT_SUCCESS:
       return {
         ...state,
         isLoading: false,
