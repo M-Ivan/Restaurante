@@ -78,7 +78,6 @@ class Header extends Component {
                     <span className="fa fa-home fa-lg"></span> Inicio
                   </NavLink>
                 </NavItem>
-
                 <NavItem>
                   <NavLink className="nav-link" to="/menu">
                     <span className="fa fa-list fa-lg"></span> Menú
@@ -101,6 +100,14 @@ class Header extends Component {
                     <span className="fa fa-address-card fa-lg"></span> Contacto
                   </NavLink>
                 </NavItem>
+                {this.props.auth.isAuthenticated && this.props.auth.admin ? (
+                  <NavItem>
+                    <NavLink className="nav-link" to="/dishlist">
+                      <span className="fa fa-cog fa-lg success"></span>{" "}
+                      Configuración
+                    </NavLink>
+                  </NavItem>
+                ) : null}
               </Nav>
               <Nav className="ml-auto" navbar>
                 <NavItem>

@@ -7,6 +7,7 @@ export const Auth = (
   state = {
     isLoading: false,
     isAuthenticated: localStorage.getItem("token") ? true : false,
+    admin: localStorage.getItem("admin") ? true : false,
     token: localStorage.getItem("token"),
     user: localStorage.getItem("creds")
       ? JSON.parse(localStorage.getItem("creds"))
@@ -51,6 +52,7 @@ export const Auth = (
         isAuthenticated: true,
         errMess: "",
         token: action.token,
+        admin: action.admin,
       };
     case ActionTypes.LOGIN_FAILURE:
       return {

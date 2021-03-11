@@ -1,5 +1,6 @@
 import * as ActionTypes from "./ActionTypes";
 import { baseUrl } from "../shared/baseUrl";
+import Axios from "axios";
 
 export const addComment = (comment) => ({
   type: ActionTypes.ADD_COMMENT,
@@ -251,6 +252,7 @@ export const receiveLogin = (response) => {
   return {
     type: ActionTypes.LOGIN_SUCCESS,
     token: response.token,
+    admin: response.admin,
   };
 };
 
@@ -343,6 +345,7 @@ export const loginUser = (creds) => (dispatch) => {
         // If login was successful, set the token in local storage
         localStorage.setItem("token", response.token);
         localStorage.setItem("creds", JSON.stringify(creds));
+        localStorage.setItem("admin", response.admin);
         // Dispatch the success action
         dispatch(fetchFavorites());
         dispatch(receiveLogin(response));
@@ -411,7 +414,7 @@ export const requestLogout = () => {
   };
 };
 
-export const receiveLogout = () => {
+export const receiveLogout = (response) => {
   return {
     type: ActionTypes.LOGOUT_SUCCESS,
   };
@@ -422,6 +425,7 @@ export const logoutUser = () => (dispatch) => {
   dispatch(requestLogout());
   localStorage.removeItem("token");
   localStorage.removeItem("creds");
+  localStorage.removeItem("admin");
   dispatch(favoritesFailed("Error 401: Unauthorized"));
   dispatch(receiveLogout());
 };
@@ -541,3 +545,60 @@ export const addFavorites = (favorites) => ({
   type: ActionTypes.ADD_FAVORITES,
   payload: favorites,
 });
+
+export const createDish = () => async (dispatch) => {
+  dispatch({ type: ActionTypes.CREATE_DISH_REQUEST });
+  const bearer = "Bearer " + localStorage.getItem("token");
+  try {
+    const { data } = await Axios.post(
+      baseUrl + "dishes/",
+      {},
+      {
+        headers: { Authorization: bearer },
+      }
+    );
+    dispatch({ type: ActionTypes.CREATE_DISH_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: ActionTypes.CREATE_DISH_FAILED, payload: message });
+  }
+};
+
+export const deleteDish = (dishId) => async (dispatch) => {
+  dispatch({ type: ActionTypes.DELETE_DISH_REQUEST, payload: dishId });
+  const bearer = "Bearer " + localStorage.getItem("token");
+
+  try {
+    const { data } = Axios.delete(baseUrl + `dishes/${dishId}`, {
+      headers: { Authorization: bearer },
+    });
+    dispatch({ type: ActionTypes.DELETE_DISH_SUCCESS });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: ActionTypes.DELETE_DISH_FAILED, payload: message });
+  }
+};
+
+export const updateDish = (dish) => async (dispatch) => {
+  dispatch({ type: ActionTypes.UPDATE_DISH_REQUEST, payload: dish });
+  const bearer = "Bearer " + localStorage.getItem("token");
+
+  try {
+    const { data } = await Axios.put(baseUrl + `dishes/${dish._id}`, dish, {
+      headers: { Authorization: bearer },
+    });
+    dispatch({ type: ActionTypes.UPDATE_DISH_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: ActionTypes.UPDATE_DISH_FAILED, error: message });
+  }
+};

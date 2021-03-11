@@ -7,6 +7,7 @@ import {
   BreadcrumbItem,
   CardText,
   CardHeader,
+  CardSubtitle,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Loading } from "./LoadingComponent";
@@ -21,10 +22,10 @@ function RenderMenuItem(dish) {
       onMouseLeave={() => setFullDisplay(false)}
     >
       <Link to={`/menu/${dish.dish._id}`}>
-        {console.log("dish", dish.dish._id)}
         <CardImg
           top
           width="100%"
+          height="100%"
           src={baseUrl + dish.dish.image}
           alt={dish.name}
         />
@@ -32,8 +33,11 @@ function RenderMenuItem(dish) {
           {dish.dish.name}
         </CardHeader>
         <CardTitle tag="h6" className="mb-2">
-          Tipo: {dish.dish.label}
-        </CardTitle>
+          Estilo: {dish.dish.label}
+        </CardTitle>{" "}
+        <CardSubtitle tag="h6" className="mb-2">
+          Categoria: {dish.dish.category}
+        </CardSubtitle>
         {fullDisplay ? (
           <CardText className="text-muted">{dish.dish.description}</CardText>
         ) : (

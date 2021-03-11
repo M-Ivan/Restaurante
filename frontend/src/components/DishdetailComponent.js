@@ -15,6 +15,7 @@ import {
   Row,
   Col,
   CardHeader,
+  CardSubtitle,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Control, LocalForm } from "react-redux-form";
@@ -54,8 +55,11 @@ function RenderDish({ dish, favorite, postFavorite }) {
             {dish.name}
           </CardHeader>
           <CardTitle tag="h6" className="mb-2">
-            Tipo: {dish.label}
+            Estilo: {dish.label}
           </CardTitle>
+          <CardSubtitle tag="h6" className="mb-2">
+            Categoría: {dish.category}
+          </CardSubtitle>
           <CardText>{dish.description}</CardText>
         </Card>
       </FadeTransform>

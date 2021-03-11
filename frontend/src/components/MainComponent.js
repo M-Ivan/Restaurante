@@ -25,6 +25,8 @@ import {
 import { actions } from "react-redux-form";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import RegisterComponent from "./RegisterComponent";
+import DishListComponent from "./DishListComponent";
+import DishEditComponent from "./DishEditComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -152,6 +154,24 @@ class Main extends Component {
       />
     );
 
+    const AdminRoute = ({ component: Component, ...rest }) => (
+      <Route
+        {...rest}
+        render={(props) =>
+          this.props.auth.admin ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/home",
+                state: { from: props.location },
+              }}
+            />
+          )
+        }
+      />
+    );
+
     return (
       <div>
         <Header
@@ -188,6 +208,16 @@ class Main extends Component {
                   />
                 )}
               />
+              <AdminRoute
+                exact
+                path="/dishlist"
+                component={() => <DishListComponent />}
+              ></AdminRoute>{" "}
+              <AdminRoute
+                exact
+                path="/dishlist/:dishId/edit"
+                component={() => <DishEditComponent />}
+              ></AdminRoute>
               <Route
                 exact
                 path="/contactus"
