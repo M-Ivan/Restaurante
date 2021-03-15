@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { Button, Media } from "reactstrap";
-import { createDish, deleteDish } from "../actions/dishActions";
+import { createDish, deleteDish, fetchDishes } from "../actions/dishActions";
 
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
@@ -41,6 +41,7 @@ export default withRouter(function DishListScreen(props) {
   useEffect(() => {
     if (!isAuthenticated || !admin) {
       props.history.push("/home");
+      dispatch(fetchDishes());
     }
     if (successCreate) {
       dispatch({ type: CREATE_DISH_RESET });
@@ -48,6 +49,7 @@ export default withRouter(function DishListScreen(props) {
     }
     if (successDelete) {
       dispatch({ type: DELETE_DISH_RESET });
+      dispatch(fetchDishes());
     }
   }, [createdDish, dispatch, props.history, successCreate, successDelete]);
 

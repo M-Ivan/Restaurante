@@ -24,15 +24,13 @@ var favoriteRouter = require("./routes/favoritesRouter");
 
 const mongoose = require("mongoose");
 
-const url = config.mongoUrl;
-const connect = mongoose.connect(url);
-
-connect.then(
-  (db) => {
-    console.log("Connected correctly to server");
-  },
-  (err) => {
-    console.log(err);
+mongoose.connect(
+  process.env.MONGODB_URL ||
+    "mongodb+srv://m-ivan:password123Ivan@reactstaurante.5zs8w.mongodb.net/reactstaurant?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
   }
 );
 

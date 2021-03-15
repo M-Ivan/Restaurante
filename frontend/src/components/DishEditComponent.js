@@ -19,7 +19,7 @@ import {
   CardSubtitle,
   CardText,
 } from "reactstrap";
-import { updateDish } from "../actions/dishActions";
+import { fetchDishes, updateDish } from "../actions/dishActions";
 import { UPDATE_DISH_RESET } from "../constants/dishConstants";
 
 // Rfc de la screen completa.
@@ -57,9 +57,11 @@ export default withRouter(function DishEditScreen(props) {
   useEffect(() => {
     if (successUpdate) {
       props.history.push("/menu");
+      dispatch(fetchDishes());
     }
     if (!dish || dish._id !== dishId || successUpdate) {
       dispatch({ type: UPDATE_DISH_RESET });
+      dispatch(fetchDishes());
     } else {
       setName(dish.name);
       setPrice(dish.price);
