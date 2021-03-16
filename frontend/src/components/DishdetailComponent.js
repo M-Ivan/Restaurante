@@ -20,9 +20,10 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Control, LocalForm } from "react-redux-form";
-import { Loading } from "./LoadingComponent";
+import ReactLoading from "react-loading";
 import { baseUrl } from "../shared/baseUrl";
 import { FadeTransform, Fade, Stagger } from "react-animation-components";
+import Rating from "./Rating";
 
 // Display Plato
 function RenderDish({ dish, favorite, postFavorite }) {
@@ -62,6 +63,9 @@ function RenderDish({ dish, favorite, postFavorite }) {
           <CardSubtitle tag="h6" className="mb-2">
             Categoría: {dish.category}
           </CardSubtitle>
+          <CardSubtitle tag="h6" className="price mb-2">
+            $: {dish.price}
+          </CardSubtitle>
           <CardText>{dish.description}</CardText>
         </Card>
       </FadeTransform>
@@ -73,24 +77,34 @@ function RenderDish({ dish, favorite, postFavorite }) {
 function RenderComments({ comments, postComment, dishId }) {
   if (comments != null)
     return (
-      <div className="col-12 col-md-5 m-1">
-        <h4>Comments</h4>
+      <div className="comments col-12 col-md-5 m-1">
+        <h3>Caja de comentarios:</h3>
         <ul className="list-unstyled">
           <Stagger in>
             {comments.map((comment) => {
               return (
                 <Fade in key={comment._id}>
                   <li>
-                    <p>{comment.comment}</p>
-                    <p>{comment.rating} stars</p>
-                    <p>
-                      {comment.author.firstname} {comment.author.lastname} ,{" "}
+                    <div className="comment-author">
+                      <p>
+                        {comment.author.firstname} {comment.author.lastname}
+                      </p>
+                    </div>
+                    <div className="comment-rating">
+                      <Rating rating={comment.rating} />
+                    </div>
+                    <div className="comment-comment">
+                      <p>{comment.comment}</p>
+                    </div>
+
+                    <div className="comment-date">
+                      {" "}
                       {new Intl.DateTimeFormat("en-US", {
                         year: "numeric",
                         month: "short",
                         day: "2-digit",
                       }).format(new Date(Date.parse(comment.updatedAt)))}
-                    </p>
+                    </div>
                   </li>
                 </Fade>
               );
@@ -119,8 +133,8 @@ const CommentForm = (props) => {
 
   return (
     <div>
-      <Button outline onClick={toggleModal}>
-        <span className="fa fa-pencil fa-lg"></span> Comentar
+      <Button block color="success" outline onClick={toggleModal}>
+        <span className="fa fa-pencil fa-lg"></span> Agregar un comentario
       </Button>
       <Modal isOpen={modalOpen} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>Subir comentario</ModalHeader>
@@ -168,7 +182,7 @@ const DishDetail = (props) => {
     return (
       <div className="container">
         <div className="row">
-          <Loading />
+          <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>
         </div>
       </div>
     );

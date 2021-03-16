@@ -9,7 +9,7 @@ import {
   Media,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { Loading } from "./LoadingComponent";
+import ReactLoading from "react-loading";
 import { baseUrl } from "../shared/baseUrl";
 import { Fade, Stagger } from "react-animation-components";
 
@@ -47,7 +47,7 @@ function LeaderList(props) {
 
   //Handle Loading
   if (props.leaders.isLoading) {
-    return <Loading />;
+    return <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>;
   } else if (props.leaders.errMess) {
     return (
       <div className="col-12">

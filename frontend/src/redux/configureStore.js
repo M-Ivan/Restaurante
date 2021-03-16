@@ -6,10 +6,9 @@ import {
   dishesListReducer,
   dishesReducer,
   dishUpdateReducer,
-  dishDetailsReducer,
 } from "../reducers/dishReducers";
 import { commentsReducer } from "../reducers/commentsReducer";
-import { favorites } from "./favorites";
+import { favoritesReducer } from "../reducers/favoritesReducer";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { InitialFeedback } from "./forms";
@@ -21,7 +20,7 @@ export const ConfigureStore = () => {
   const store = createStore(
     combineReducers({
       dishes: dishesReducer,
-      dishDetails: dishDetailsReducer,
+
       dishList: dishesListReducer,
       comments: commentsReducer,
       promotions: promotionsReducer,
@@ -30,7 +29,7 @@ export const ConfigureStore = () => {
       dishCreate: dishCreateReducer,
       dishDelete: dishDeleteReducer,
       dishUpdate: dishUpdateReducer,
-      favorites,
+      favorites: favoritesReducer,
       ...createForms({
         feedback: InitialFeedback,
       }),

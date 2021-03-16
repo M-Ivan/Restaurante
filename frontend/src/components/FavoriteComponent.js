@@ -3,7 +3,9 @@ import React from "react";
 import { Media, Breadcrumb, BreadcrumbItem, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../shared/baseUrl";
-import { Loading } from "./LoadingComponent";
+import ReactLoading from "react-loading";
+
+import MessageBox from "./MessageBox";
 
 //Render de los favoritos
 function RenderMenuItem({ dish, deleteFavorite }) {
@@ -38,7 +40,7 @@ const Favorites = (props) => {
     return (
       <div className="container">
         <div className="row">
-          <Loading />
+          <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>{" "}
         </div>
       </div>
     );
@@ -46,7 +48,7 @@ const Favorites = (props) => {
     return (
       <div className="container">
         <div className="row">
-          <h4>{props.favorites.errMess}</h4>
+          <MessageBox variant="danger">{props.favorites.errMess}</MessageBox>
         </div>
       </div>
     );

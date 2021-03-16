@@ -76,7 +76,7 @@ router.post("/login", (req, res, next) => {
     if (!user) {
       res.statusCode = 401;
       res.setHeader("Content-Type", "application/json");
-      res.json({ success: false, status: "Login Unsuccessful", err: info });
+      res.json({ success: false, status: "Error al logear", err: info });
     }
     req.logIn(user, (err) => {
       if (err) {
@@ -84,8 +84,8 @@ router.post("/login", (req, res, next) => {
         res.setHeader("Content-Type", "application/json");
         res.json({
           success: false,
-          status: "Login Unsuccessful",
-          err: "Could not log in user",
+          status: "Error al logear",
+          err: "No se pudo logear al usuario",
         });
       }
 
@@ -95,7 +95,7 @@ router.post("/login", (req, res, next) => {
       res.json({
         admin: req.user.admin,
         success: true,
-        status: "Login Successful",
+        status: "Inicio de sesión exitoso",
         token: token,
       });
     });
@@ -108,7 +108,7 @@ router.get("/logout", (req, res) => {
     res.clearCookie("session-id");
     res.redirect("/");
   } else {
-    var err = new Error("You are not logged in!");
+    var err = new Error("No has iniciado sesión!");
     err.status = 403;
     next(err);
   }
@@ -125,7 +125,7 @@ router.get(
       res.json({
         success: true,
         token: token,
-        status: "You are succesfully logged in!",
+        status: "Te logeaste correctamente",
       });
     }
   }

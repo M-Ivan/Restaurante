@@ -3,14 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { Button, Media } from "reactstrap";
-import {
-  createDish,
-  deleteDish,
-  fetchDishes,
-  listDishes,
-} from "../actions/dishActions";
-
-import LoadingBox from "../components/LoadingBox";
+import { createDish, deleteDish, listDishes } from "../actions/dishActions";
+import ReactLoading from "react-loading";
 import MessageBox from "../components/MessageBox";
 
 import {
@@ -75,21 +69,24 @@ export default withRouter(function DishListScreen(props) {
             Agregar al Menú
           </Button>
         </div>
-
-        {loadingDelete && <LoadingBox></LoadingBox>}
+        {loadingDelete && (
+          <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>
+        )}
         {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
 
-        {loadingCreate && <LoadingBox></LoadingBox>}
+        {loadingCreate && (
+          <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>
+        )}
         {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
         {loading ? (
-          <LoadingBox></LoadingBox>
+          <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>
         ) : error ? (
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <table className="table">
             <thead>
               {dishes.length === 0 ? (
-                <MessageBox className="col-12" variant="danger">
+                <MessageBox className="col-12" variant="info">
                   No hay items
                 </MessageBox>
               ) : (
@@ -127,13 +124,13 @@ export default withRouter(function DishListScreen(props) {
                     {dish.name}
                   </td>
                   <td>{dish.label}</td>
-                  <td>${dish.price}</td>
+                  <td className="price">${dish.price}</td>
                   <td>{dish.category}</td>
                   <td>
                     <Button
                       type="button"
                       color="info"
-                      className="small"
+                      className="small mr-1"
                       onClick={() =>
                         props.history.push(`/dishlist/${dish._id}/edit`)
                       }

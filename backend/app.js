@@ -1,26 +1,24 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var session = require("express-session");
-var passport = require("passport");
-var config = require("./config");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const session = require("express-session");
+const passport = require("passport");
+const config = require("./config");
 const cors = require("cors");
-var app = express();
+const app = express();
 
 app.use(cors());
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var dishRouter = require("./routes/dishRouter");
-var promoRouter = require("./routes/promoRouter");
-var leaderRouter = require("./routes/leaderRouter");
-var uploadRouter = require("./routes/uploadRouter");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const dishRouter = require("./routes/dishRouter");
+const promoRouter = require("./routes/promoRouter");
+const leaderRouter = require("./routes/leaderRouter");
+const uploadRouter = require("./routes/uploadRouter");
 const commentRouter = require("./routes/commentRouter");
-
-//Adding the /Favorites endpoint
-var favoriteRouter = require("./routes/favoritesRouter");
+const favoriteRouter = require("./routes/favoritesRouter");
 
 const mongoose = require("mongoose");
 
@@ -46,7 +44,6 @@ mongoose.connect(
 //  }
 //});}
 
-// view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
@@ -69,18 +66,18 @@ app.use("/uploads", uploadRouter);
 app.use("/favorites", favoriteRouter);
 app.use("/comments", commentRouter);
 
-// catch 404 and forward to error handler
+// 404
 app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
+// Error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
+  // Pagina de error
   res.status(err.status || 500);
   res.render("error");
 });

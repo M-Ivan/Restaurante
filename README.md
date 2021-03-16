@@ -12,26 +12,30 @@
 
 ```
 $ git clone git@github.com:M-ivan/reactstaurant.git
-$ cd reactstaurante
+$ cd Restaurante-main
 ```
 
 ### 2. MongoDB
 
 - Local MongoDB
   -Instalalo de [aquí](https://www.mongodb.com/try/download/community)
-  - Crea un .env en la carpeta raiz
+
+  - Crea un .env en la carpeta backend (no en la raiz)
   - Pega esto: MONGODB_URL=mongodb://localhost/amazona
+
 - Atlas Cloud MongoDB
+
   - Crea una DB en [https://cloud.mongodb.com](https://cloud.mongodb.com)
-  - Crea un .env en la carpeta raiz
+  - Crea un .env en la carpeta backend (no en la raiz)
   - Pega: MONGODB_URL=mongodb+srv://tu-conexión-con-la-DB
 
 ### 3. Backend
 
-en reactstaurant/
+en carpeta raiz (la que contiene backend/ y frontend/)
 
 ```
 # en la terminal
+$ cd backend
 $ npm install
 $ npm start (sin nodemon)
 $ npm run dev (nodemon)
@@ -50,6 +54,8 @@ $ npm start
 
 ```
 # O también (en root folder)
+$ npm run backend-install
+$ npm run backend
 $ npm run client-install
 $ npm run client
 ```

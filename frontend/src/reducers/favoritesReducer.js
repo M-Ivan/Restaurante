@@ -9,6 +9,7 @@ export const favoritesReducer = (
     isLoading: true,
     errMess: null,
     favorites: null,
+    success: null,
   },
   action
 ) => {
@@ -18,6 +19,7 @@ export const favoritesReducer = (
         ...state,
         isLoading: false,
         errMess: null,
+        success: true,
         favorites: action.payload,
       };
 
@@ -30,6 +32,7 @@ export const favoritesReducer = (
         isLoading: false,
         errMess: action.payload,
         favorites: null,
+        success: false,
       };
 
     default:

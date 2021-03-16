@@ -1,7 +1,7 @@
 //imports
 import React from "react";
 import { Card, CardImg, CardText, CardTitle, CardHeader } from "reactstrap";
-import { Loading } from "./LoadingComponent";
+import ReactLoading from "react-loading";
 import { baseUrl } from "../shared/baseUrl";
 import { FadeTransform } from "react-animation-components";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 function RenderCard({ item, isLoading, errMess }) {
   if (item) {
     if (isLoading) {
-      return <Loading />;
+      <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>;
     } else if (errMess) {
       return <h4>{errMess}</h4>;
     } else

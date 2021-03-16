@@ -10,9 +10,6 @@ import {
   DELETE_DISH_SUCCESS,
   DISHES_FAILED,
   DISHES_LOADING,
-  DISH_DETAILS_FAILED,
-  DISH_DETAILS_REQUEST,
-  DISH_DETAILS_SUCCESS,
   DISH_LIST_FAILED,
   DISH_LIST_REQUEST,
   DISH_LIST_SUCCESS,
@@ -47,19 +44,6 @@ export const dishesReducer = (
         errMess: action.payload,
         dishes: [],
       };
-    default:
-      return state;
-  }
-};
-
-export const dishDetailsReducer = (state = { loading: true }, action) => {
-  switch (action.type) {
-    case DISH_DETAILS_REQUEST:
-      return { loading: true };
-    case DISH_DETAILS_SUCCESS:
-      return { loading: false, dish: action.payload };
-    case DISH_DETAILS_FAILED:
-      return { loading: false, error: action.payload };
     default:
       return state;
   }

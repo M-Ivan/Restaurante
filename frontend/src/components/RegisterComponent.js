@@ -1,7 +1,7 @@
 //Imports
 import React, { useEffect, useState } from "react";
 import { withRouter, Link } from "react-router-dom";
-import LoadingBox from "./LoadingBox";
+import ReactLoading from "react-loading";
 import MessageBox from "./MessageBox";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -68,7 +68,7 @@ export default withRouter(function RegisterComponent(props) {
                 Las contraseñas coinciden
               </MessageBox>
             ) : null}
-            {loading && <LoadingBox></LoadingBox>}
+            {loading && <ReactLoading type="spin" width={120}></ReactLoading>}
             {error && <MessageBox variant="danger">{error}</MessageBox>}
 
             <div>

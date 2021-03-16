@@ -36,6 +36,7 @@ export const postFavorite = (dishId) => (dispatch) => {
     .then((favorites) => {
       console.log("Favorite Added", favorites);
       dispatch(addFavorites(favorites));
+      dispatch(fetchFavorites());
     })
     .catch((error) => dispatch(favoritesFailed(error.message)));
 };
@@ -68,8 +69,9 @@ export const deleteFavorite = (dishId) => (dispatch) => {
     )
     .then((response) => response.json())
     .then((favorites) => {
-      console.log("Favorite Deleted", favorites);
+      console.log("Favorito Eliminado", favorites);
       dispatch(addFavorites(favorites));
+      dispatch(fetchFavorites());
     })
     .catch((error) => dispatch(favoritesFailed(error.message)));
 };

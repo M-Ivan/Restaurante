@@ -14,12 +14,13 @@ import {
   DISH_LIST_REQUEST,
   DISH_LIST_SUCCESS,
   DISH_LIST_FAILED,
-  DISH_DETAILS_REQUEST,
-  DISH_DETAILS_SUCCESS,
-  DISH_DETAILS_FAILED,
 } from "../constants/dishConstants";
 import { baseUrl } from "../shared/baseUrl";
 import Axios from "axios";
+
+// bastante situacional action pero util para manejar
+// el useffect hook sin entrar en loop infinito. Como por ejemplo
+// en la página de dishList
 
 export const listDishes = () => async (dispatch) => {
   dispatch({
@@ -72,23 +73,6 @@ export const addDishes = (dishes) => ({
   type: ADD_DISHES,
   payload: dishes,
 });
-
-export const detailsDish = (dishId) => async (dispatch) => {
-  dispatch({ type: DISH_DETAILS_REQUEST, payload: dishId });
-  try {
-    const { data } = await Axios.get(baseUrl + `dishes/${dishId}`);
-    dispatch({ type: DISH_DETAILS_SUCCESS, payload: data });
-    console.log("data", data);
-  } catch (error) {
-    dispatch({
-      type: DISH_DETAILS_FAILED,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
 
 export const createDish = () => async (dispatch) => {
   dispatch({ type: CREATE_DISH_REQUEST });

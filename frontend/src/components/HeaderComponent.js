@@ -18,7 +18,7 @@ import {
   Label,
 } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
-import LoadingBox from "./LoadingBox";
+import ReactLoading from "react-loading";
 
 // Rcc del Header.
 class Header extends Component {
@@ -71,7 +71,7 @@ class Header extends Component {
                 src="assets/images/logo.png"
                 height="30"
                 width="41"
-                alt="Ristorante Con Fusion"
+                alt="Reactstaurante"
               />
             </NavbarBrand>
             <Collapse isOpen={this.state.isNavOpen} navbar>
@@ -133,7 +133,11 @@ class Header extends Component {
                           {this.props.auth.user.username}
                         </div>
                       ) : this.props.auth.isLoading ? (
-                        <LoadingBox />
+                        <ReactLoading
+                          type="spin"
+                          width={60}
+                          color="#2c82d3"
+                        ></ReactLoading>
                       ) : null}
                       <Button
                         className="logout"

@@ -108,6 +108,53 @@ address {
   z-index: 100;
 }
 
+.price {
+  font-weight: bold;
+  color: #2c82d3;
+}
+
+/* Commentarios */
+.comments li {
+  border-top: 1px solid #3d3d3d2f;
+  border-bottom: 1px solid #3d3d3d2f;
+  font-size: 1.2rem;
+  padding: 0.5rem 0.5rem;
+  width: 120%;
+}
+
+.comments li:hover {
+  box-shadow: 0px 0px 10px #3d3d3d2f;
+  border-radius: 0.3rem;
+  border: 0;
+}
+
+.comment-comment {
+  font-size: 16px;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+.comment-author {
+  font-weight: bold;
+  font-size: 23px;
+  color: #181818;
+  padding: 0rem 0.5rem 0rem;
+}
+.comment-date {
+  font-size: 14px;
+  text-align: right;
+}
+.comment-rating {
+  font-size: 14px;
+  margin-left: 1rem;
+}
+.rating span {
+  color: #f0c040;
+  margin: 0.1rem;
+}
+
+.rating span:last-child {
+  color: #ffa601;
+}
 /* Medias */
 .media.favorites {
   padding: 1rem;
