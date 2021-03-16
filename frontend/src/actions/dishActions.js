@@ -11,9 +11,27 @@ import {
   DELETE_DISH_REQUEST,
   DELETE_DISH_SUCCESS,
   DELETE_DISH_FAILED,
+  DISH_LIST_REQUEST,
+  DISH_LIST_SUCCESS,
+  DISH_LIST_FAILED,
+  DISH_DETAILS_REQUEST,
+  DISH_DETAILS_SUCCESS,
+  DISH_DETAILS_FAILED,
 } from "../constants/dishConstants";
 import { baseUrl } from "../shared/baseUrl";
 import Axios from "axios";
+
+export const listDishes = () => async (dispatch) => {
+  dispatch({
+    type: DISH_LIST_REQUEST,
+  });
+  try {
+    const { data } = await Axios.get(baseUrl + "dishes");
+    dispatch({ type: DISH_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: DISH_LIST_FAILED, payload: error.message });
+  }
+};
 
 export const fetchDishes = () => (dispatch) => {
   dispatch(dishesLoading(true));
@@ -55,6 +73,23 @@ export const addDishes = (dishes) => ({
   payload: dishes,
 });
 
+export const detailsDish = (dishId) => async (dispatch) => {
+  dispatch({ type: DISH_DETAILS_REQUEST, payload: dishId });
+  try {
+    const { data } = await Axios.get(baseUrl + `dishes/${dishId}`);
+    dispatch({ type: DISH_DETAILS_SUCCESS, payload: data });
+    console.log("data", data);
+  } catch (error) {
+    dispatch({
+      type: DISH_DETAILS_FAILED,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
 export const createDish = () => async (dispatch) => {
   dispatch({ type: CREATE_DISH_REQUEST });
   const bearer = "Bearer " + localStorage.getItem("token");
@@ -66,7 +101,8 @@ export const createDish = () => async (dispatch) => {
         headers: { Authorization: bearer },
       }
     );
-    dispatch({ type: CREATE_DISH_SUCCESS, payload: data });
+    console.log(data);
+    dispatch({ type: CREATE_DISH_SUCCESS, payload: data.dish });
   } catch (error) {
     const message =
       error.response && error.response.data.message

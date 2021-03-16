@@ -16,7 +16,7 @@ import RegisterComponent from "./RegisterComponent";
 import DishListComponent from "./DishListComponent";
 import DishEditComponent from "./DishEditComponent";
 import AdminRoute from "./AdminRoute";
-import { fetchDishes } from "../actions/dishActions";
+import { fetchDishes, listDishes } from "../actions/dishActions";
 import { fetchComments, postComment } from "../actions/commentsActions";
 import { fetchPromos } from "../actions/promoActions";
 import { fetchLeaders, postFeedback } from "../actions/leadersActions";

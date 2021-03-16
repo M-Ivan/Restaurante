@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { Button, Media } from "reactstrap";
-import { createDish, deleteDish, fetchDishes } from "../actions/dishActions";
+import {
+  createDish,
+  deleteDish,
+  fetchDishes,
+  listDishes,
+} from "../actions/dishActions";
 
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
@@ -15,8 +20,8 @@ import {
 import { baseUrl } from "../shared/baseUrl";
 
 export default withRouter(function DishListScreen(props) {
-  const dishes = useSelector((state) => state.dishes);
-  const { isLoading, errMess } = dishes;
+  const dishList = useSelector((state) => state.dishList);
+  const { loading, error, dishes } = dishList;
 
   const auth = useSelector((state) => state.auth);
   const { isAuthenticated, admin } = auth;
@@ -41,7 +46,6 @@ export default withRouter(function DishListScreen(props) {
   useEffect(() => {
     if (!isAuthenticated || !admin) {
       props.history.push("/home");
-      dispatch(fetchDishes());
     }
     if (successCreate) {
       dispatch({ type: CREATE_DISH_RESET });
@@ -49,14 +53,14 @@ export default withRouter(function DishListScreen(props) {
     }
     if (successDelete) {
       dispatch({ type: DELETE_DISH_RESET });
-      dispatch(fetchDishes());
+      dispatch(listDishes());
     }
-  }, [createdDish, dispatch, props.history, successCreate, successDelete]);
+    dispatch(listDishes());
+  }, [successDelete, successCreate, createdDish, props.history, dispatch]);
 
   const deleteHandler = (dish) => {
-    if (window.confirm("Are you sure to delete?")) {
+    if (window.confirm("Seguro que querés eliminar?")) {
       dispatch(deleteDish(dish._id));
-      props.history.push("/dishlist");
     }
   };
   const createHandler = () => {
@@ -77,14 +81,14 @@ export default withRouter(function DishListScreen(props) {
 
         {loadingCreate && <LoadingBox></LoadingBox>}
         {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
-        {isLoading ? (
+        {loading ? (
           <LoadingBox></LoadingBox>
-        ) : errMess ? (
-          <MessageBox variant="danger">{errMess}</MessageBox>
+        ) : error ? (
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <table className="table">
             <thead>
-              {dishes.dishes.length === 0 ? (
+              {dishes.length === 0 ? (
                 <MessageBox className="col-12" variant="danger">
                   No hay items
                 </MessageBox>
@@ -101,7 +105,7 @@ export default withRouter(function DishListScreen(props) {
               )}
             </thead>
             <tbody>
-              {dishes.dishes.map((dish) => (
+              {dishes.map((dish) => (
                 <tr key={dish._id}>
                   <td>
                     <strong>#{dish._id}</strong>

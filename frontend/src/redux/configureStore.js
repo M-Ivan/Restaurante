@@ -3,8 +3,10 @@ import { createForms } from "react-redux-form";
 import {
   dishCreateReducer,
   dishDeleteReducer,
+  dishesListReducer,
   dishesReducer,
   dishUpdateReducer,
+  dishDetailsReducer,
 } from "../reducers/dishReducers";
 import { commentsReducer } from "../reducers/commentsReducer";
 import { favorites } from "./favorites";
@@ -19,6 +21,8 @@ export const ConfigureStore = () => {
   const store = createStore(
     combineReducers({
       dishes: dishesReducer,
+      dishDetails: dishDetailsReducer,
+      dishList: dishesListReducer,
       comments: commentsReducer,
       promotions: promotionsReducer,
       leaders: leadersReducer,

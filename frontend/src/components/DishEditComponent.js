@@ -19,7 +19,7 @@ import {
   CardSubtitle,
   CardText,
 } from "reactstrap";
-import { fetchDishes, updateDish } from "../actions/dishActions";
+import { fetchDishes, listDishes, updateDish } from "../actions/dishActions";
 import { UPDATE_DISH_RESET } from "../constants/dishConstants";
 
 // Rfc de la screen completa.
@@ -37,14 +37,12 @@ export default withRouter(function DishEditScreen(props) {
     alt: "Subir imagen",
   });
 
-  console.log(src);
-
   const auth = useSelector((state) => state.auth);
   const { admin } = auth;
 
-  const dishes = useSelector((state) => state.dishes);
-  const { isLoading, errMess } = dishes;
-  const dish = dishes.dishes;
+  const dishList = useSelector((state) => state.dishList);
+  const { loading, error, dishes } = dishList;
+  const dish = dishList.dishes;
 
   const dishUpdate = useSelector((state) => state.dishUpdate);
   const {
@@ -57,11 +55,9 @@ export default withRouter(function DishEditScreen(props) {
   useEffect(() => {
     if (successUpdate) {
       props.history.push("/menu");
-      dispatch(fetchDishes());
     }
     if (!dish || dish._id !== dishId || successUpdate) {
       dispatch({ type: UPDATE_DISH_RESET });
-      dispatch(fetchDishes());
     } else {
       setName(dish.name);
       setPrice(dish.price);
@@ -132,10 +128,10 @@ export default withRouter(function DishEditScreen(props) {
           {errorUpdate && (
             <MessageBox variant="danger">{errorUpdate}</MessageBox>
           )}
-          {isLoading ? (
+          {loading ? (
             <LoadingBox></LoadingBox>
-          ) : errMess ? (
-            <MessageBox variant="danger">{errMess}</MessageBox>
+          ) : error ? (
+            <MessageBox variant="danger">{error}</MessageBox>
           ) : (
             <div>
               <div>
@@ -207,9 +203,9 @@ export default withRouter(function DishEditScreen(props) {
                   id="featured"
                   type="checkbox"
                   name="featured"
+                  value={featured}
                   onChange={() => setFeatured(!featured)}
                 />
-                {console.log(featured)}
                 <Label check htmlFor="featured">
                   Promocionado
                 </Label>

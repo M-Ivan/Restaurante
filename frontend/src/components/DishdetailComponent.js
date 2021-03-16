@@ -42,7 +42,7 @@ function RenderDish({ dish, favorite, postFavorite }) {
               color="danger"
               onClick={() =>
                 favorite
-                  ? console.log("Already favorite")
+                  ? console.log("Ya es favorito")
                   : postFavorite(dish._id)
               }
             >
