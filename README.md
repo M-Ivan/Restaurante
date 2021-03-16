@@ -1,6 +1,6 @@
 # ReactStaurante
 
-![amazona](/frontend/public/reactstaurante.png)
+![Reactstaurante](/frontend/public/assets/images/reactstaurante.png)
 
 ## Demo online del proyecto:
 
