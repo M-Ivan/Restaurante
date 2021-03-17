@@ -1,6 +1,6 @@
 //imports
 import React from "react";
-import { Media, Breadcrumb, BreadcrumbItem, Button } from "reactstrap";
+import { Media, Breadcrumb, BreadcrumbItem, Button, Fade } from "reactstrap";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../shared/baseUrl";
 import ReactLoading from "react-loading";
@@ -10,27 +10,38 @@ import MessageBox from "./MessageBox";
 //Render de los favoritos
 function RenderMenuItem({ dish, deleteFavorite }) {
   return (
-    <Media className="favorites" tag="li">
-      <Media left middle>
-        <Link to={`/menu/${dish._id}`}>
-          <Media
-            object
-            width={200}
-            src={baseUrl + dish.image}
-            alt={dish.name}
-          />
-        </Link>
-      </Media>
-      <Media body className="ml-5">
-        <Link to={`/menu/${dish._id}`}>
-          <Media heading>{dish.name}</Media>
-        </Link>
-        <p>{dish.description}</p>
-        <Button outline color="danger" onClick={() => deleteFavorite(dish._id)}>
-          <span className="fa fa-times"></span>
-        </Button>
-      </Media>
-    </Media>
+    <div>
+      <Fade in key={dish._id}>
+        <Media className="favorites" tag="li">
+          <Media left middle>
+            <Link to={`/menu/${dish._id}`}>
+              <Media
+                className="favorites"
+                object
+                width={200}
+                src={baseUrl + dish.image}
+                alt={dish.name}
+              />
+            </Link>
+            <p className="favorites-price">$: {dish.price}</p>
+          </Media>
+          <Media body className="ml-5">
+            <Link to={`/menu/${dish._id}`}>
+              <Media heading>{dish.name}</Media>
+            </Link>
+            <p>{dish.description}</p>
+            <Button
+              outline
+              color="danger"
+              onClick={() => deleteFavorite(dish._id)}
+            >
+              <span className="fa fa-trash"></span>
+            </Button>
+          </Media>
+        </Media>
+        <hr />
+      </Fade>
+    </div>
   );
 }
 
@@ -95,7 +106,9 @@ const Favorites = (props) => {
           <div className="col-12">
             <h3>Mis Favoritos</h3>
             <hr />
-            <h4>No tienes favoritos</h4>
+            <Fade in>
+              <h4>No tienes favoritos</h4>
+            </Fade>
           </div>
         </div>
       </div>

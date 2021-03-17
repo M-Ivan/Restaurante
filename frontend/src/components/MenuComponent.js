@@ -44,7 +44,7 @@ function RenderMenuItem(dish) {
           <CardSubtitle tag="h6" className="price mb-2">
             $: {dish.dish.price}
           </CardSubtitle>
-          {fullDisplay ? (
+          {fullDisplay && dish.dish.description.length !== 0 ? (
             <CardText className="text-muted">{dish.dish.description}</CardText>
           ) : (
             <hr /> && <CardText className="text-muted">Saber mas...</CardText>

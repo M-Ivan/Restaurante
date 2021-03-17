@@ -15,6 +15,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .container.left {
   align-items: left;
   justify-content: left;
@@ -113,6 +114,13 @@ address {
   color: #2c82d3;
 }
 
+.favorites-price {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  color: #2c82d3;
+}
+
 /* Commentarios */
 .comments li {
   border-top: 1px solid #3d3d3d2f;
@@ -155,20 +163,37 @@ address {
 .rating span:last-child {
   color: #ffa601;
 }
+
 /* Medias */
 .media.favorites {
   padding: 1rem;
   color: #3f3d3a;
   font-weight: bold;
 }
+
+.media.leaders {
+  margin-top: 28px;
+  border-radius: 0.7rem;
+}
+
 .media-object {
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   box-shadow: 0px 0px 5px #40404050;
 }
+.media-object.favorites {
+  box-shadow: 0px 0px 10px #404040e0;
+  border-radius: 1rem;
+}
+
+.media-object.favorites:hover {
+  box-shadow: 0px 0px 12px #292929e0;
+}
+
 .media.favorites:hover {
   border-radius: 0.5rem;
   box-shadow: 0px 0px 5px #40404081;
 }
+
 .media.favorites a {
   color: #442b1f;
   text-decoration: none;
@@ -177,6 +202,7 @@ address {
 .media a:hover {
   text-shadow: 2px 2px 2px #ffe8a8;
 }
+
 .media-heading {
   font-weight: bold;
 }
@@ -188,21 +214,19 @@ address {
   font-size: 1rem;
   border-bottom: 1px solid #40404050;
 }
-
 .breadcrumb:hover {
   box-shadow: 0px 5px 7px #40404049;
   border-radius: 0.5rem;
 }
-
 .breadcrumb a {
   color: #005ec9;
 }
-
 .breadcrumb a:hover {
   color: #0772ff;
 }
 
 /* Botones / Algunos se utilizaron en los <Button/> de ReactStrap*/
+
 button {
   padding: 0.3rem 0.6rem;
   border-radius: 0.5rem;
@@ -212,6 +236,7 @@ button {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 button {
   background-color: #f8f8f8;
   cursor: pointer;
@@ -221,6 +246,7 @@ button.primary {
   font-weight: bold;
   padding: 0.5rem 0.8rem;
 }
+
 button.primary:hover {
   box-shadow: 0px 0px 3px #38383877;
 }

@@ -25,12 +25,12 @@ import ReactLoading from "react-loading";
 // Rfc de la screen completa.
 export default withRouter(function DishEditScreen(props) {
   const dishId = props.match.params.dishId;
-  const [name, setName] = useState("ejemplo ");
-  const [label, setLabel] = useState("ejemplo ");
+  const [name, setName] = useState("Plato");
+  const [label, setLabel] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("/public/images/uploadImage.png");
-  const [category, setCategory] = useState("ejemplo");
-  const [description, setDescription] = useState("descripción");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
   const [featured, setFeatured] = useState(false);
   const [{ alt, src }, setPreview] = useState({
     src: placeholder,
@@ -165,7 +165,7 @@ export default withRouter(function DishEditScreen(props) {
               </div>
 
               <div>
-                <Label htmlFor="price">Price</Label>
+                <Label htmlFor="price">Precio</Label>
                 <Input
                   id="price"
                   type="number"
@@ -175,17 +175,20 @@ export default withRouter(function DishEditScreen(props) {
                 ></Input>
               </div>
               <div>
-                <Label htmlFor="image"></Label>
+                <Label htmlFor="image">Imagen</Label>
                 <Input
                   id="image"
                   disabled
-                  placeholder="JPG, PNG, JPEG"
+                  placeholder="JPG, PNG, JPEG."
                   value={image}
                   onChange={(e) => setImage(e.target.value)}
                 ></Input>
               </div>
               <div>
-                <Label htmlFor="imageFile">Subir una Imagen</Label>
+                <Label htmlFor="imageFile">
+                  Se recomiendan imagenes de 700x500px, se pueden redimensionar{" "}
+                  <a href="https://www.resizepixel.com/">aquí</a>
+                </Label>
                 <Input
                   type="file"
                   id="imageFile"

@@ -63,95 +63,94 @@ export default withRouter(function DishListScreen(props) {
   return (
     <div className="container">
       <div className="row">
-        <div>
-          <h1>Platos</h1>
-          <Button type="button" color="success" onClick={createHandler}>
-            Agregar al Menú
-          </Button>
-        </div>
-        {loadingDelete && (
-          <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>
-        )}
-        {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
-
-        {loadingCreate && (
-          <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>
-        )}
-        {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
-        {loading ? (
-          <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>
-        ) : error ? (
-          <MessageBox variant="danger">{error}</MessageBox>
-        ) : (
-          <table className="table">
-            <thead>
-              {dishes.length === 0 ? (
-                <MessageBox className="col-12" variant="info">
-                  No hay items
-                </MessageBox>
-              ) : (
-                <tr>
-                  <th>#</th>
-                  <th></th>
-                  <th>PLATO</th>
-                  <th>ESTILO</th>
-                  <th>PRECIO</th>
-                  <th>CATEGORÍA</th>
-                  <th>ACCIONES</th>
-                </tr>
-              )}
-            </thead>
-            <tbody>
-              {dishes.map((dish) => (
-                <tr key={dish._id}>
-                  <td>
-                    <strong>#{dish._id}</strong>
-                  </td>
-                  <Link to={`/menu/${dish._id}`}>
-                    <Media
-                      object
-                      width={50}
-                      src={baseUrl + dish.image}
-                      alt={dish.name}
-                    />
-                  </Link>
-                  <td>
-                    {dish.featured ? (
-                      <i className="featured fa fa-star"></i>
-                    ) : (
-                      <i className="featured fa fa-star-o"></i>
-                    )}{" "}
-                    {dish.name}
-                  </td>
-                  <td>{dish.label}</td>
-                  <td className="price">${dish.price}</td>
-                  <td>{dish.category}</td>
-                  <td>
-                    <Button
-                      type="button"
-                      color="info"
-                      className="small mr-1"
-                      onClick={() =>
-                        props.history.push(`/dishlist/${dish._id}/edit`)
-                      }
-                    >
-                      Editar
-                    </Button>
-                    <Button
-                      color="danger"
-                      type="button"
-                      className="small"
-                      onClick={() => deleteHandler(dish)}
-                    >
-                      Borrar
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+        <h1>Platos:</h1>
+      </div>{" "}
+      <div className="row">
+        <Button type="button" color="success" onClick={createHandler}>
+          Agregar un plato
+        </Button>
       </div>
+      {loadingDelete && (
+        <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>
+      )}
+      {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
+      {loadingCreate && (
+        <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>
+      )}
+      {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
+      {loading ? (
+        <ReactLoading type="spin" width={60} color="#2c82d3"></ReactLoading>
+      ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : (
+        <table className="table">
+          <thead>
+            {dishes.length === 0 ? (
+              <MessageBox className="col-12" variant="info">
+                No hay items
+              </MessageBox>
+            ) : (
+              <tr>
+                <th>#</th>
+                <th></th>
+                <th>PLATO</th>
+                <th>ESTILO</th>
+                <th>PRECIO</th>
+                <th>CATEGORÍA</th>
+                <th>ACCIONES</th>
+              </tr>
+            )}
+          </thead>
+          <tbody>
+            {dishes.map((dish) => (
+              <tr key={dish._id}>
+                <td>
+                  <strong>#{dish._id}</strong>
+                </td>
+                <Link to={`/menu/${dish._id}`}>
+                  <Media
+                    object
+                    width={50}
+                    src={baseUrl + dish.image}
+                    alt={dish.name}
+                  />
+                </Link>
+                <td>
+                  {dish.featured ? (
+                    <i className="featured fa fa-star"></i>
+                  ) : (
+                    <i className="featured fa fa-star-o"></i>
+                  )}{" "}
+                  {dish.name}
+                </td>
+                <td>{dish.label}</td>
+                <td className="price">${dish.price}</td>
+                <td>{dish.category}</td>
+                <td>
+                  <Button
+                    type="button"
+                    color="info"
+                    className="small mr-1"
+                    onClick={() =>
+                      props.history.push(`/dishlist/${dish._id}/edit`)
+                    }
+                  >
+                    Editar
+                  </Button>
+                  <Button
+                    color="danger"
+                    type="button"
+                    className="small"
+                    onClick={() => deleteHandler(dish)}
+                  >
+                    Borrar
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 });

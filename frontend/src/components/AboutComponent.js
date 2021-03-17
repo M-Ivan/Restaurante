@@ -16,21 +16,24 @@ import { Fade, Stagger } from "react-animation-components";
 //Display leader
 function RenderLeader({ leader }) {
   return (
-    <Media tag="li">
-      <Media left middle>
-        <Media
-          object
-          width={150}
-          src={baseUrl + leader.image}
-          alt={leader.name}
-        />
+    <div>
+      <Media className="leaders" tag="li">
+        <Media left middle>
+          <Media
+            object
+            width={150}
+            src={baseUrl + leader.image}
+            alt={leader.name}
+          />
+        </Media>
+        <Media body className="ml-5">
+          <Media heading>{leader.name}</Media>
+          <p>{leader.designation}</p>
+          <p>{leader.description}</p>
+        </Media>
       </Media>
-      <Media body className="ml-5">
-        <Media heading>{leader.name}</Media>
-        <p>{leader.designation}</p>
-        <p>{leader.description}</p>
-      </Media>
-    </Media>
+      <hr />
+    </div>
   );
 }
 
@@ -133,6 +136,7 @@ export default function About(props) {
       <div className="row row-content">
         <div className="col-12">
           <h2>Principales Referentes</h2>
+          <hr />
         </div>
         <LeaderList leaders={props.leaders} />
       </div>
