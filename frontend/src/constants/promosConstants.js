@@ -1,0 +1,3 @@
+export const PROMOS_LOADING = "PROMOS_LOADING";
+export const ADD_PROMOS = "ADD_PROMOS";
+export const PROMOS_FAILED = "PROMOS_FAILED";

@@ -1,0 +1,293 @@
+/* Layout */
+
+.row-header {
+  margin: 0px auto;
+  padding: 0px auto;
+}
+.row-content {
+  margin: 0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height: 400px;
+}
+
+.row.centered {
+  align-items: center;
+  justify-content: center;
+}
+
+.container.left {
+  align-items: left;
+  justify-content: left;
+}
+
+/* General */
+.background {
+  background-color: #eeeeee;
+}
+::selection {
+  color: #fff3c0;
+  background-color: #442b1f;
+}
+
+a {
+  font-weight: bold;
+}
+
+.link {
+  color: #000000;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #000000;
+  text-decoration: none;
+}
+.featured {
+  color: #ffa600;
+}
+
+/* Footer */
+.footer {
+  background-color: #ffe8cb;
+  margin: 0px auto;
+  padding: 20px 0px 20px 0px;
+}
+
+/* Junbotron (area debajo del header en home/ parte de ReactStrap) */
+.jumbotron {
+  padding: 70px 30px 70px 30px;
+  margin: 0px auto;
+  background: #ffe8cb;
+  color: #3d3d3d;
+}
+
+address {
+  font-size: 80%;
+  margin: 0px;
+  color: #0f0f0f;
+}
+
+/* Nav */
+.navbar-dark {
+  background-color: #30180d;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Cards */
+.card {
+  border-radius: 0.5rem;
+  transition: transform 0.2s;
+}
+.card-title,
+.card-subtitle,
+.card-text {
+  padding: 0.5rem 1.2rem;
+}
+.card-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.card-header {
+  font-weight: bold;
+}
+.card-img {
+  border-bottom: 1px #404040;
+}
+
+.card a {
+  text-decoration: none;
+  color: #30180d;
+  font-weight: normal;
+}
+.card.animated:hover {
+  box-shadow: 0px 0px 7px #4e4e4e54;
+  border-radius: 0.5rem;
+  transform: scale(1.1);
+  z-index: 100;
+}
+
+.price {
+  font-weight: bold;
+  color: #2c82d3;
+}
+
+.favorites-price {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  color: #2c82d3;
+}
+
+/* Commentarios */
+.comments li {
+  border-top: 1px solid #3d3d3d2f;
+  border-bottom: 1px solid #3d3d3d2f;
+  font-size: 1.2rem;
+  padding: 0.5rem 0.5rem;
+  width: 120%;
+}
+
+.comments li:hover {
+  box-shadow: 0px 0px 10px #3d3d3d2f;
+  border-radius: 0.3rem;
+  border: 0;
+}
+
+.comment-comment {
+  font-size: 16px;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+.comment-author {
+  font-weight: bold;
+  font-size: 23px;
+  color: #181818;
+  padding: 0rem 0.5rem 0rem;
+}
+.comment-date {
+  font-size: 14px;
+  text-align: right;
+}
+.comment-rating {
+  font-size: 14px;
+  margin-left: 1rem;
+}
+.rating span {
+  color: #f0c040;
+  margin: 0.1rem;
+}
+
+.rating span:last-child {
+  color: #ffa601;
+}
+
+/* Medias */
+.media.favorites {
+  padding: 1rem;
+  color: #3f3d3a;
+  font-weight: bold;
+}
+
+.media.leaders {
+  margin-top: 28px;
+  border-radius: 0.7rem;
+}
+
+.media-object {
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 5px #40404050;
+}
+.media-object.favorites {
+  box-shadow: 0px 0px 10px #404040e0;
+  border-radius: 1rem;
+}
+
+.media-object.favorites:hover {
+  box-shadow: 0px 0px 12px #292929e0;
+}
+
+.media.favorites:hover {
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 5px #40404081;
+}
+
+.media.favorites a {
+  color: #442b1f;
+  text-decoration: none;
+}
+
+.media a:hover {
+  text-shadow: 2px 2px 2px #ffe8a8;
+}
+
+.media-heading {
+  font-weight: bold;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  background-color: #ffe8cb;
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  border-bottom: 1px solid #40404050;
+}
+.breadcrumb:hover {
+  box-shadow: 0px 5px 7px #40404049;
+  border-radius: 0.5rem;
+}
+.breadcrumb a {
+  color: #005ec9;
+}
+.breadcrumb a:hover {
+  color: #0772ff;
+}
+
+/* Botones / Algunos se utilizaron en los <Button/> de ReactStrap*/
+
+button {
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 0.1rem #a4a4a4 solid;
+  font-size: 1.3rem;
+  font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+button.primary {
+  font-weight: bold;
+  padding: 0.5rem 0.8rem;
+}
+
+button.primary:hover {
+  box-shadow: 0px 0px 3px #38383877;
+}
+
+button.login {
+  font-size: 1.2rem;
+  padding: 0.4rem 0.6rem;
+  border: 2px solid #000000;
+  background-color: #ecca95;
+  font-weight: bold;
+  color: #1d1d1d;
+}
+
+button.logout {
+  font-size: 1.2rem;
+  padding: 0.4rem 0.6rem;
+  border: 2px solid #000000;
+  background-color: #ecca95;
+  font-weight: bold;
+  color: #1d1d1d;
+}
+
+/* Animaciones */
+.page-enter {
+  opacity: 0.01;
+  transform: translateX(-100%);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 300ms ease-in;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.page-exit-active {
+  opacity: 0.01;
+  transform: translateX(100%);
+  transition: all 300ms ease-out;
+}
