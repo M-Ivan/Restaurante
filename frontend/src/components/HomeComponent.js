@@ -42,7 +42,7 @@ export default function Home(props) {
       <div className="row align-items-start">
         <div className="col-12 col-md m-1">
           {props.dish ? (
-            <Link className="link" to={`/menu/${props.dish._id}`}>
+            <Link className="link" to={`/${props.dish._id}`}>
               <RenderCard
                 item={props.dish}
                 isLoading={props.dishesLoading}

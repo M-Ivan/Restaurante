@@ -107,7 +107,10 @@ app.use(function (err, req, res, next) {
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
-  app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+  app.use(
+    "/backend/uploads",
+    express.static(path.join(directory, "/backend/uploads"))
+  );
 }
 
 const port = process.env.PORT || 5000;

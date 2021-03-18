@@ -23,7 +23,7 @@ function RenderMenuItem(dish) {
         onMouseEnter={() => setFullDisplay(true)}
         onMouseLeave={() => setFullDisplay(false)}
       >
-        <Link to={`/menu/${dish.dish._id}`}>
+        <Link to={`/${dish.dish._id}`}>
           <CardImg
             top
             width="100%"

@@ -106,7 +106,7 @@ export default withRouter(function DishListScreen(props) {
                 <td>
                   <strong>#{dish._id}</strong>
                 </td>
-                <Link to={`/menu/${dish._id}`}>
+                <Link to={`/${dish._id}`}>
                   <Media object width={50} src={dish.image} alt={dish.name} />
                 </Link>
                 <td>

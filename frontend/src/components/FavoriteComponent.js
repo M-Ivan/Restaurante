@@ -13,7 +13,7 @@ function RenderMenuItem({ dish, deleteFavorite }) {
       <Fade in key={dish._id}>
         <Media className="favorites" tag="li">
           <Media left middle>
-            <Link to={`/menu/${dish._id}`}>
+            <Link to={`/${dish._id}`}>
               <Media
                 className="favorites"
                 object
@@ -25,7 +25,7 @@ function RenderMenuItem({ dish, deleteFavorite }) {
             <p className="favorites-price">$: {dish.price}</p>
           </Media>
           <Media body className="ml-5">
-            <Link to={`/menu/${dish._id}`}>
+            <Link to={`/${dish._id}`}>
               <Media heading>{dish.name}</Media>
             </Link>
             <p>{dish.description}</p>

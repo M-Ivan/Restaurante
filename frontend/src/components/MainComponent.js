@@ -38,7 +38,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-//Fetch al store de reudux
+//Acciones en el store de reudux
 const mapDispatchToProps = (dispatch) => ({
   postComment: (dishId, rating, comment) =>
     dispatch(postComment(dishId, rating, comment)),
@@ -180,7 +180,7 @@ class Main extends Component {
                 path="/menu"
                 component={() => <Menu dishes={this.props.dishes} />}
               />
-              <Route path="/menu/:dishId" component={DishWithId} />
+              <Route path="/:dishId" component={DishWithId} />
               <PrivateRoute
                 exact
                 path="/favorites"
