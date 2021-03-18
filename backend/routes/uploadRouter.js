@@ -21,9 +21,10 @@ const imageFileFilter = (req, file, cb) => {
 
 const upload = multer({ storage, fileFilter: imageFileFilter });
 
+// Handler de prueba para la URL
 uploadRouter.get("/", (req, res, next) => {
   res.statusCode = 403;
-  res.end("GET Operation not suported on /api/uploads");
+  res.end("GET No se soporta en /api/uploads");
 });
 
 uploadRouter.post(

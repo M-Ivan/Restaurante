@@ -4,7 +4,7 @@
 
 ## Demo online del proyecto:
 
-- :rocket: Heroku:[https://reactstaurant.herokuapp.com/](https://reactstaurant.herokuapp.com/)
+- :rocket: Heroku: [https://reactstaurant.herokuapp.com/](https://reactstaurant.herokuapp.com/) :rocket:
 
 ## Para correr en local
 
@@ -35,7 +35,6 @@ en carpeta raiz (la que contiene backend/ y frontend/)
 
 ```
 # en la terminal
-$ cd backend
 $ npm install
 $ npm start (sin nodemon)
 $ npm run dev (nodemon)
@@ -52,10 +51,23 @@ $ npm install
 $ npm start
 ```
 
+### 3 & 4.bis.
+
 ```
 # O también (en root folder)
 $ npm run backend-install
-$ npm run backend
+$ npm run backend (nodemon)
 $ npm run client-install
 $ npm run client
 ```
+
+### 5. Descripción.
+
+- Uso:
+  - La app esta optimizada para correr localmente, lo que significa que siguiendo los pasos mencionados deberia de ser completamente funcional. Para simular un deploy con proxy
+    (como la versión en [heroku](https://reactstaurant.herokuapp.com/)). Deben de removerse los comentarios que unen el path del backend con la build del frontend. y luego hacer
+  ```
+  $ cd frontend
+  $ npm run build
+  ```
+  luego de crear la build y remover los comentarios la app (express, no react) servira tanto los datos del cliente como del servidor. Mas información en backend/app.js

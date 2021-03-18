@@ -4,14 +4,16 @@
  * Dependencias
  */
 
+// Este archivo es el servidor https, el cual se encuentra
+// fuera de uso ya que Heroku no aceptaba la api de https para
+// poder hacer requests.
+
 var app = require("../app");
 var debug = require("debug")("confusionserver:server");
 var http = require("http");
 var https = require("https");
 var fs = require("fs");
-/**
- * Obtiene el puerto
- */
+
 /*
  * Create HTTP server.
  */

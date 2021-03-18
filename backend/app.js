@@ -71,6 +71,14 @@ app.use("/api/favorites", favoriteRouter);
 app.use("/api/comments", commentRouter);
 
 const directory = path.resolve();
+
+// Esto es lo que permite "fusionar" (alojar en la misma URL)
+// al server con el cliente, lo que deja con las rutas
+// /api/ a todo lo que es backend.
+// Se encuentra deshabilitado porque se espera que esto se
+// descargue para correr localmente, pero si se quiere simular
+// un deploy real solo es necesario borrar los // de abajo.
+
 app.use(
   "/backend/uploads",
   express.static(path.join(directory, "/backend/uploads"))
@@ -87,7 +95,7 @@ app.use(function (req, res, next) {
 
 // Error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
+  // set locals
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
@@ -104,7 +112,7 @@ if (process.env.NODE_ENV === "production") {
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log("Servidor en puerto", port);
-  console.log("dir", directory);
+  console.log("Rutas en dir", directory);
 });
 
 module.exports = app;
