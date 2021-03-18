@@ -25,7 +25,7 @@ function RenderMenuItem({ dish, deleteFavorite }) {
             <p className="favorites-price">$: {dish.price}</p>
           </Media>
           <Media body className="ml-5">
-            <Link to={`/${dish._id}`}>
+            <Link to={`/menu/${dish._id}`}>
               <Media heading>{dish.name}</Media>
             </Link>
             <p>{dish.description}</p>

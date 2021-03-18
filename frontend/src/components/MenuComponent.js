@@ -23,7 +23,7 @@ function RenderMenuItem(dish) {
         onMouseEnter={() => setFullDisplay(true)}
         onMouseLeave={() => setFullDisplay(false)}
       >
-        <Link to={`/${dish.dish._id}`}>
+        <Link to={`/menu/${dish.dish._id}`}>
           <CardImg
             top
             width="100%"
@@ -56,7 +56,6 @@ function RenderMenuItem(dish) {
 
 //La pantalla del menu
 export default function Menu(props) {
-  console.log(props);
   if (props.dishes.dishes) {
     const menu = props.dishes.dishes.map((dish) => {
       return (

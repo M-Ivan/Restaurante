@@ -180,7 +180,7 @@ class Main extends Component {
                 path="/menu"
                 component={() => <Menu dishes={this.props.dishes} />}
               />
-              <Route path="/:dishId" component={DishWithId} />
+              <Route path="/menu/:dishId" component={DishWithId} />
               <PrivateRoute
                 exact
                 path="/favorites"
