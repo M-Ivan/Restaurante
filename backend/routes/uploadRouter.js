@@ -21,6 +21,11 @@ const imageFileFilter = (req, file, cb) => {
 
 const upload = multer({ storage, fileFilter: imageFileFilter });
 
+uploadRouter.get("/", (req, res, next) => {
+  res.statusCode = 403;
+  res.end("GET Operation not suported on /api/uploads");
+});
+
 uploadRouter.post(
   "/",
   authenticate.verifyUser,
