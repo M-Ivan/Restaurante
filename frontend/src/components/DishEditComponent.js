@@ -27,7 +27,7 @@ export default withRouter(function DishEditScreen(props) {
   const [name, setName] = useState("Plato");
   const [label, setLabel] = useState("");
   const [price, setPrice] = useState("");
-  const [image, setImage] = useState("/public/images/uploadImage.png");
+  const [image, setImage] = useState("/assets/images/uploadImage.png");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [featured, setFeatured] = useState(false);
@@ -108,7 +108,7 @@ export default withRouter(function DishEditScreen(props) {
     bodyFormData.append("image", file);
     setLoadingUpload(true);
     try {
-      const { data } = await Axios.post("uploads", bodyFormData, {
+      const { data } = await Axios.post("/api/uploads", bodyFormData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: bearer,

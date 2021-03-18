@@ -115,6 +115,7 @@ export const deleteDish = (dishId) => async (dispatch) => {
         : error.message;
     dispatch({ type: DELETE_DISH_FAILED, payload: message });
   }
+  dispatch(listDishes());
 };
 
 export const updateDish = (dish) => async (dispatch) => {

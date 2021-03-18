@@ -37,7 +37,7 @@ dishRouter.post(
   expressAsyncHandler(async (req, res) => {
     const dish = new Dishes({
       name: "ejemplo " + Date.now(),
-      image: "/public/images/uploadImage.png",
+      image: "/assets/images/uploadImage.png",
       price: 0,
       category: "category",
       description: "descripcion",

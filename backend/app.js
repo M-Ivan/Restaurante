@@ -63,14 +63,19 @@ app.use(passport.initialize());
 app.use("/", indexRouter);
 app.use("/api/users", usersRouter);
 
-app.use(express.static(path.join(__dirname)));
-
 app.use("/api/dishes", dishRouter);
 app.use("/api/promotions", promoRouter);
 app.use("/api/leaders", leaderRouter);
 app.use("/api/uploads", uploadRouter);
 app.use("/api/favorites", favoriteRouter);
 app.use("/api/comments", commentRouter);
+
+const directory = path.resolve();
+app.use("/uploads", express.static(path.join(directory, "/backend/uploads")));
+app.use(express.static(path.join(directory, "/frontend/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(directory, "/frontend/build/index.html"))
+);
 
 // 404
 app.use(function (req, res, next) {
@@ -90,12 +95,13 @@ app.use(function (err, req, res, next) {
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
-  app.use("/api/uploads", express.static(path.join(__dirname, "/api/uploads")));
+  app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 }
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log("Servidor en puerto", port);
+  console.log("dir", directory);
 });
 
 module.exports = app;
