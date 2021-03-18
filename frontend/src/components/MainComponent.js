@@ -38,7 +38,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-//Acciones en el store de reudux
+//Fetch al store de reudux
 const mapDispatchToProps = (dispatch) => ({
   postComment: (dishId, rating, comment) =>
     dispatch(postComment(dishId, rating, comment)),
