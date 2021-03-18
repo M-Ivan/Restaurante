@@ -21,7 +21,7 @@ $ cd Restaurante-main
   -Instalalo de [aquí](https://www.mongodb.com/try/download/community)
 
   - Crea un .env en la carpeta backend (no en la raiz)
-  - Pega esto: MONGODB_URL=mongodb://localhost/amazona
+  - Pega esto: MONGODB_URL=mongodb://localhost/reactstaurant
 
 - Atlas Cloud MongoDB
 
@@ -64,8 +64,8 @@ $ npm run client
 ### 5. Descripción.
 
 - Uso:
-  - La app esta optimizada para correr localmente, lo que significa que siguiendo los pasos mencionados deberia de ser completamente funcional. Para simular un deploy con proxy
-    (como la versión en [heroku](https://reactstaurant.herokuapp.com/)). Deben de removerse los comentarios que unen el path del backend con la build del frontend. y luego hacer
+  La app esta optimizada para correr localmente, lo que significa que siguiendo los pasos mencionados deberia de ser completamente funcional. Para simular un deploy con proxy
+  (como la versión en [heroku](https://reactstaurant.herokuapp.com/)). Deben de removerse los comentarios que unen el path del backend con la build del frontend. y luego hacer
   ```
   $ cd frontend
   $ npm run build
