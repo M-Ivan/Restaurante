@@ -79,7 +79,7 @@ class Contact extends Component {
                 className="btn btn-primary"
                 href="tel:+85212345678"
               >
-                <i className="fa fa-phone"></i> Call
+                <i className="fa fa-phone"></i> Llamar
               </a>
               <a role="button" className="btn btn-info">
                 <i className="fa fa-skype"></i> Skype
@@ -87,7 +87,7 @@ class Contact extends Component {
               <a
                 role="button"
                 className="btn btn-success"
-                href="mailto:confusion@food.net"
+                href="mailto:reactstaurante@food.net"
               >
                 <i className="fa fa-envelope-o"></i> Email
               </a>
@@ -97,6 +97,7 @@ class Contact extends Component {
         <div className="row row-content">
           <div className="col-12">
             <h3>Envianos tu Feeedback</h3>
+            <hr />
           </div>
           <div className="col-12 col-md-9">
             <Form
@@ -220,21 +221,23 @@ class Contact extends Component {
                 </Col>
               </Row>
               <Row className="form-group">
-                <Col md={{ size: 6, offset: 2 }}>
+                <Col md={{ size: 1, offset: 1 }}>
                   <div className="form-check">
-                    <Label check>
-                      <Control.checkbox
-                        model=".agree"
-                        name="agree"
-                        className="form-check-input"
-                      />{" "}
-                      <strong>
-                        Deseo que me informen sobre novedades y promociones
-                      </strong>
-                    </Label>
+                    <Control.checkbox
+                      model=".agree"
+                      name="agree"
+                      className="form-check-input"
+                    />{" "}
                   </div>
                 </Col>
-                <Col md={{ size: 3, offset: 1 }}>
+                <Label md={{ size: 4, offset: 0 }}>
+                  Deseo que me informen sobre novedades y promociones{" "}
+                </Label>
+
+                <Label md={{ size: 1, offset: 2 }} htmlFor="contactType">
+                  Vía:
+                </Label>
+                <Col md={3}>
                   <Control.select
                     model=".contactType"
                     name="contactType"
@@ -247,10 +250,11 @@ class Contact extends Component {
               </Row>
               <Row className="form-group">
                 <Label htmlFor="message" md={2}>
-                  <strong>Tus comentarios</strong>
+                  Tu comentario
                 </Label>
                 <Col md={10}>
                   <Control.textarea
+                    placeholder="Escribinos tu feedback"
                     model=".message"
                     id="message"
                     name="message"
@@ -259,8 +263,10 @@ class Contact extends Component {
                   />
                 </Col>
               </Row>
+
               <Row className="form-group">
                 <Col md={{ size: 10, offset: 2 }}>
+                  {" "}
                   <Button type="submit" color="warning">
                     Enviar Comentarios
                   </Button>
