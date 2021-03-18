@@ -32,6 +32,12 @@ mongoose.connect(
   }
 );
 
+//app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+//app.use(express.static(path.join(path.resolve(), "/frontend/build")));
+//app.get("*", (req, res) =>
+//  res.sendFile(path.join(path.resolve(), "frontend", "build", "index.html"))
+//);
+
 // Secure traffic only
 // app.all("*", (req, res, next) => {
 //  if (req.secure) {
@@ -81,6 +87,10 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("frontend/build"));
+}
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

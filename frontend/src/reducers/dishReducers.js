@@ -50,7 +50,7 @@ export const dishesReducer = (
 };
 
 export const dishesListReducer = (
-  state = { loading: true, dishes: [] },
+  state = { loading: true, error: null, dishes: [] },
   action
 ) => {
   switch (action.type) {

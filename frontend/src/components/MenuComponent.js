@@ -56,6 +56,7 @@ function RenderMenuItem(dish) {
 
 //La pantalla del menu
 export default function Menu(props) {
+  console.log(props);
   if (props.dishes.dishes) {
     const menu = props.dishes.dishes.map((dish) => {
       return (

@@ -20,9 +20,13 @@ dishRouter
   .get(
     expressAsyncHandler(async (req, res, next) => {
       const dishes = await Dishes.find(req.query).populate("comments.author");
-      res.statusCode = 200;
-      res.setHeader("Content-Type", "application/json");
-      res.send(dishes);
+      if (dishes) {
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "application/json");
+        res.send(dishes);
+      } else {
+        res.status(404).send({ message: "No hay platos" });
+      }
     })
   );
 

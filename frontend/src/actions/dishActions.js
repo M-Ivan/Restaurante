@@ -29,7 +29,11 @@ export const listDishes = () => async (dispatch) => {
     const { data } = await Axios.get("/api/dishes");
     dispatch({ type: DISH_LIST_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: DISH_LIST_FAILED, payload: error.message });
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: DISH_LIST_FAILED, payload: message });
   }
 };
 
