@@ -71,6 +71,11 @@ app.use("/api/favorites", favoriteRouter);
 app.use("/api/comments", commentRouter);
 
 const directory = path.resolve();
+// URL FIXER
+app.use(
+  "/backend/uploads",
+  express.static(path.join(directory, "/backend/uploads"))
+);
 
 // Esto es lo que permite "fusionar" (alojar en la misma URL)
 // al server con el cliente, lo que deja con las rutas
@@ -79,10 +84,6 @@ const directory = path.resolve();
 // descargue para correr localmente, pero si se quiere simular
 // un deploy real solo es necesario borrar los // de abajo.
 
-//    app.use(
-//    "/backend/uploads",
-//     express.static(path.join(directory, "/backend/uploads"))
-//     );
 //     app.use(express.static(path.join(directory, "/frontend/build")));
 //     app.get("*", (req, res) =>
 //    res.sendFile(path.join(directory, "/frontend/build/index.html"))
