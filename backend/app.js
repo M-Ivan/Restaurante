@@ -90,6 +90,10 @@ app.use(function (err, req, res, next) {
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
 }
 
 const port = process.env.PORT || 5000;
