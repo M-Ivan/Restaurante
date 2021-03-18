@@ -71,7 +71,10 @@ app.use("/api/favorites", favoriteRouter);
 app.use("/api/comments", commentRouter);
 
 const directory = path.resolve();
-app.use("/uploads", express.static(path.join(directory, "/backend/uploads")));
+app.use(
+  "/backend/uploads",
+  express.static(path.join(directory, "/backend/uploads"))
+);
 app.use(express.static(path.join(directory, "/frontend/build")));
 app.get("*", (req, res) =>
   res.sendFile(path.join(directory, "/frontend/build/index.html"))
